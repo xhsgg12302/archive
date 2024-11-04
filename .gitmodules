@@ -3,4 +3,4 @@
 	url = https://github.com/xhsgg12302/archive-docs.git
 [submodule ".images"]
 	path = .images
-	url = https://github.com/xhsgg12302/archive-asserts.git
+	url = https://github.com/xhsgg12302/archive-assets.git
