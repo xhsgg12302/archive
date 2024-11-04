@@ -1,0 +1,10 @@
+.hr-division-line:after {
+    content: "§";
+    display: inline-block;
+    position: relative;
+    top: -0.7em;
+    font-size: 2em;
+    padding: 0 0.25em;
+    color: #333;
+    background: #faf8f8;
+}
