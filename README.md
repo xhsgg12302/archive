@@ -1,1 +1,1 @@
-# knownledges
+# hugo static web site
