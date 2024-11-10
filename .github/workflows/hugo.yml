@@ -32,14 +32,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
       - name: Cache Hugo binary
         id: cache-hugo-binary
         uses: actions/cache@v3
         with:
           path: /usr/local/bin/hugo
-          key: hugo-binary-${{ runner.os }}-${{ hashFiles('**/go.sum') }}
+          key: hugo-binary-${{ runner.os }}-${{ hashFiles('./go.sum') }}
 
-      - name: Install diy Hugo CLI if not cached
+      - name: Install Updated Hugo CLI if not cached
         if: steps.cache-hugo-binary.outputs.cache-hit != 'true'
         run: |
           git clone https://github.com/12302-bak/hugo.git
@@ -54,13 +60,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /usr/local/bin/hugo
-          key: hugo-binary-${{ runner.os }}-${{ hashFiles('**/go.sum') }}
-
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
-          fetch-depth: 0
+          key: hugo-binary-${{ runner.os }}-${{ hashFiles('./go.sum') }}
 
       # 启用 github pages，获取和设置 metadata，like base_url
       - name: Setup Pages
@@ -76,40 +76,30 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"
+            --baseURL "${{ steps.pages.outputs.base_url }}/hugo/"
   
-      # 跨 jobs 缓存
-      - uses: actions/cache/save@v4
-        id: cache
-        with:
-          path: ./public
-          key: cache-public-${{ runner.os }}-${{ hashFiles('**/lockfiles') }} 
+      - name: put to subdir
+        run: |
+          mkdir hugo && mv public hugo
+          echo '<!DOCTYPE html><html lang="en"><body><a href="./hugo">hugo</a></body></html>' > hugo/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ./hugo
 
   # Deployment job
   deploy-gh-pages:
     environment:
       name: github-pages
-      # url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
     steps:
-      # - name: Deploy to GitHub Pages
-      #   id: deployment
-      #   uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
-      - name: Deploy to GitHub Pages to /hugo
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          commit_message: ${{ github.event.head_commit.message }}
-          publish_dir: ./public
-          publish_branch: gh-pages-hugo
-          destination_dir: hugo
 
   deploy-vps:
     environment:
@@ -117,20 +107,29 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-
-      - uses: actions/cache/restore@v4
-        id: cache
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          path: ./public
-          key: cache-public-${{ runner.os }}-${{ hashFiles('**/lockfiles') }} 
+          submodules: recursive
+          fetch-depth: 0
 
-      - name: Deploy
-        if: steps.cache.outputs.cache-hit == 'true'
+      - name: Build with Hugo
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+          HUGO_ENVIRONMENT: production
+          TZ: Asia/Shanghai
+        run: |
+          hugo \
+            --gc \
+            --minify \
+            --baseURL "https:/tech.wtfu.site/"
+      
+      - name: Deploy to vps step
         uses: easingthemes/ssh-deploy@v2.2.11
         env:
           ARGS: "-avz --delete"
           # EXCLUDE: "/.git/, /.github/"
-          SOURCE: "./public"
+          SOURCE: "./public/"
           REMOTE_HOST: "wtfu.site"
           SSH_PRIVATE_KEY: ${{ secrets.DOCS_ACCESS_TOKEN }}
           REMOTE_PORT: ${{ secrets.DOCS_REMOTE_PORT }}
