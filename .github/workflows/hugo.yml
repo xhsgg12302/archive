@@ -57,13 +57,6 @@ jobs:
           # Verify Hugo installation
           /usr/local/bin/hugo version
 
-      - name: Cache Hugo binary again
-        if: steps.cache-hugo-binary.outputs.cache-hit != 'true'
-        uses: actions/cache@v3
-        with:
-          path: /usr/local/bin/hugo
-          key: hugo-binary-${{ runner.os }}-${{ hashFiles('./go.sum') }}
-
       # 启用 github pages，获取和设置 metadata，like base_url
       - name: Setup Pages
         id: pages
@@ -84,7 +77,7 @@ jobs:
         run: |
           mkdir -p hugo ${{ runner.temp }}/content  && mv public hugo && mv hugo/public hugo/hugo && mv hugo/hugo ${{ runner.temp }}/content
           # clean work dir
-          git clean -fdx
+          cd ../ && rm -rf archive && mkdir archive && cd archive
       
       - name: Checkout docsify branch
         uses: actions/checkout@v4
@@ -94,7 +87,7 @@ jobs:
       - name: Put docsify to temp subdir
         run: |
           mkdir -p docsify/docsify && mv .images dist docs _sidebar.md .nojekyll index.html README.md LICENSE docsify/docsify/ && mv docsify/docsify ${{ runner.temp }}/content
-          echo '<!DOCTYPE html><html lang="en"><body><a href="./hugo">hugo</a><br><a href="./docsify">docsify</a></body></html>' > ${{ runner.temp }}/content/index.html
+          echo '<!DOCTYPE html><html lang="en"><body><a href="./hugo/">hugo</a><br><a href="./docsify/#/">docsify</a></body></html>' > ${{ runner.temp }}/content/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
