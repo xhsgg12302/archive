@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - hugo
+      - docsify
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -32,9 +33,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout hugo branch
         uses: actions/checkout@v4
         with:
+          ref: hugo
           submodules: recursive
           fetch-depth: 0
 
@@ -78,15 +80,26 @@ jobs:
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/hugo/"
   
-      - name: put to subdir
+      - name: Put hugo to temp subdir
         run: |
-          mkdir hugo && mv public hugo && mv hugo/public hugo/hugo
-          echo '<!DOCTYPE html><html lang="en"><body><a href="./hugo">hugo</a></body></html>' > hugo/index.html
+          mkdir -p hugo ${{ runner.temp }}/content  && mv public hugo && mv hugo/public hugo/hugo && mv hugo/hugo ${{ runner.temp }}/content
+          # clean work dir
+          git clean -fdx
+      
+      - name: Checkout docsify branch
+        uses: actions/checkout@v4
+        with:
+          ref: docsify
+
+      - name: Put docsify to temp subdir
+        run: |
+          mkdir -p docsify/docsify && mv .images dist docs _sidebar.md .nojekyll index.html README.md LICENSE docsify/docsify/ && mv docsify/docsify ${{ runner.temp }}/content
+          echo '<!DOCTYPE html><html lang="en"><body><a href="./hugo">hugo</a><br><a href="./docsify">docsify</a></body></html>' > ${{ runner.temp }}/content/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./hugo
+          path: ${{ runner.temp }}/content
 
   # Deployment job
   deploy-gh-pages:
@@ -101,7 +114,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
 
-  deploy-vps:
+  deploy-vps-tech:
     environment:
       name: vps
     runs-on: ubuntu-latest
@@ -110,6 +123,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          ref: hugo
           submodules: recursive
           fetch-depth: 0
       - name: Cache Hugo binary
@@ -128,7 +142,7 @@ jobs:
             --minify \
             --baseURL "https://tech.wtfu.site/"
       
-      - name: Deploy to vps step
+      - name: Deploy to vps tech step
         uses: easingthemes/ssh-deploy@v2.2.11
         env:
           ARGS: "-avz --delete"
@@ -138,4 +152,26 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.DOCS_ACCESS_TOKEN }}
           REMOTE_PORT: ${{ secrets.DOCS_REMOTE_PORT }}
           REMOTE_USER: ${{ secrets.DOCS_USER }}
-          TARGET: ${{ secrets.DOCS_TARGET_DIR }}
+          TARGET: ${{ secrets.DOCS_TARGET_DIR_HUGO }}
+
+  deploy-vps-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: docsify
+          submodules: recursive
+          fetch-depth: 0
+      
+      - name: Deploy to vps docs step
+        uses: easingthemes/ssh-deploy@v2.2.11
+        env:
+          ARGS: "-avz --delete"
+          # EXCLUDE: "/.git/, /.github/"
+          SOURCE: "./public/"
+          REMOTE_HOST: "wtfu.site"
+          SSH_PRIVATE_KEY: ${{ secrets.DOCS_ACCESS_TOKEN }}
+          REMOTE_PORT: ${{ secrets.DOCS_REMOTE_PORT }}
+          REMOTE_USER: ${{ secrets.DOCS_USER }}
+          TARGET: ${{ secrets.DOCS_TARGET_DIR_DOCSIFY }}
