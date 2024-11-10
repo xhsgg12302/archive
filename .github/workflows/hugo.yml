@@ -44,7 +44,7 @@ jobs:
         run: |
           git clone https://github.com/12302-bak/hugo.git
           cd hugo
-          git checkout 12302
+          git checkout _12302
           CGO_ENABLED=1 GOBIN=/usr/local/bin go install -tags extended
           # Verify Hugo installation
           /usr/local/bin/hugo version
