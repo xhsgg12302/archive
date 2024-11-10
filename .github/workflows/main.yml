@@ -1,5 +1,5 @@
 # Sample workflow for building and deploying a Hugo site to GitHub Pages
-name: Deploy hugo branch
+name: Build and deploy archive
 
 on:
   # Runs on pushes targeting the default branch
@@ -76,13 +76,13 @@ jobs:
       - name: Put hugo to temp subdir
         run: |
           mkdir -p hugo ${{ runner.temp }}/content  && mv public hugo && mv hugo/public hugo/hugo && mv hugo/hugo ${{ runner.temp }}/content
-          # clean work dir
-          cd ../ && rm -rf archive && mkdir archive && cd archive
-      
+ 
       - name: Checkout docsify branch
         uses: actions/checkout@v4
         with:
           ref: docsify
+          submodules: recursive
+          fetch-depth: 0
 
       - name: Put docsify to temp subdir
         run: |
