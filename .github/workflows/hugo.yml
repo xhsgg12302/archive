@@ -126,7 +126,7 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "https:/tech.wtfu.site/"
+            --baseURL "https://tech.wtfu.site/"
       
       - name: Deploy to vps step
         uses: easingthemes/ssh-deploy@v2.2.11
