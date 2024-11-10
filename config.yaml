@@ -1,11 +1,12 @@
-baseURL: https://docs.wtfu.site
+baseURL: https://example.com
 languageCode: 'en-us'
-title: 'knowledges'
+title: 'archive'
 theme: ["amethyst"]
 
 # Book configuration
 disablePathToLower: true
 enableGitInfo: true
+# gitRepoDir: ".git/modules/content"
 gitRepoDir: "content"
 
 # # Needed for mermaid/katex shortcodes
@@ -14,7 +15,8 @@ markup:
     renderer:
       unsafe: true
   tableOfContents:
-    startLevel: 1
+    startLevel: 2
+    endLevel: 4
 
 # Multi-lingual mode config
 # There are different options to translate files
@@ -28,20 +30,20 @@ menu:
   #     url: "https://google.com"
   #     weight: 10
   after:
-    - name: "Github"
-      url: "https://github.com/64bitpandas/amethyst"
+    - name: "Github[branch-hugo]"
+      url: "https://github.com/xhsgg12302/archive/tree/hugo"
       weight: 10
 
 params:
 
-  name: Ben Cuan
-  title: 📓 Amethyst
+  name: xhsgg12302
+  title: 📓 Archive
 
   # OPTIONAL: custom favicon location
   # favicon: 'location/to/favicon.png'
 
   # whether to display on-hover link preview cards
-  enableLinkPreview: true
+  enableLinkPreview: false
 
   # Enable rendering of LaTeX blocks
   # (surrounded by either single or double dollar signs)
@@ -74,7 +76,7 @@ params:
   enableMermaid: true
 
   # Link to your Github repo
-  GitHubLink: https://github.com/64bitpandas/amethyst
+  GitHubLink: https://github.com/xhsgg12302/archive
 
   # Search (WIP)
   search:
@@ -84,15 +86,15 @@ params:
 
   # Site description and title
   description:
-    Notes, hosted by bencuan
+    Notes, hosted by 12302
 
   
   # Footer links
-  links:
-    - link_name: Website
-      link: https://bencuan.me
-    - link_name: Blog
-      link: https://blog.bencuan.me
+  # links:
+  #   - link_name: Website
+  #     link: https://bencuan.me
+  #   - link_name: Blog
+  #     link: https://blog.bencuan.me
 
   # (Optional, default true) Controls table of contents visibility on right side of pages.
   # Start and end levels can be controlled with markup.tableOfContents setting.
@@ -114,7 +116,7 @@ params:
 
   # Set source repository location.
   # Used for 'Last Modified' and 'Edit this page' links.
-  BookRepo: https://github.com/64bitpandas/amethyst
+  BookRepo: https://github.com/xhsgg12302/archive/tree/hugo
 
   # (Optional, default 'commit') Specifies commit portion of the link to the page's last modified
   # commit hash for 'doc' page type.
@@ -131,14 +133,14 @@ params:
   # Configure the date format used on the pages
   # - In git information
   # - In blog posts
-  BookDateFormat: "January 2, 2006"
+  # BookDateFormat: "January 2, 2006"
 
 
   # (Optional, default true) Enables comments template on pages
   # By default partals/docs/comments.html includes Disqus template
   # See https://gohugo.io/content-management/comments/#configure-disqus
   # Can be overwritten by same param in page frontmatter
-  BookComments: true
+  BookComments: false
 
   # /!\ This is an experimental feature, might be removed or changed at any time
   # (Optional, experimental, default false) Enables a drop-down menu for translations only if a translation is present.
@@ -149,3 +151,7 @@ params:
   BookSearch: false
   BookServiceWorker: false
   BookPortableLinks: false
+
+services:
+  disqus:
+    shortname: archive-5

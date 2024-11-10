@@ -1,0 +1,7 @@
+{{/*  
+    override themes/amethyst/layouts/partials/docs/toc.html  
+*/}}
+
+{{ partial "docs/inject/toc-before" . }}
+{{ .TableOfContents }}
+{{ partial "docs/inject/toc-after" . }}

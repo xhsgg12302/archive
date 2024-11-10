@@ -1,0 +1,20 @@
+
+
+
+{{ define "main" }}
+  <article class="12302-home markdown">
+    <h1 class="title" style="text-align: center;">{{ partial "docs/title.html" . }}</h1>
+    <div style="text-align: center;">
+        {{ partial "tags" .}}
+        {{ with .GitInfo }} 
+          <p class="tracked">
+            <span>Create: {{- .CreateDate | time.Format "2006/01/02" -}}</span>
+            <span style="padding-left:2em">Update: {{- .AuthorDate | time.Format (default "January 2, 2006" "2006-01-02") -}}</span>
+          </p>
+        {{ end }}
+    </div>
+    {{ partial "quartz/textprocessing" . }}
+    {{ partial "quartz/footer" .}}
+    {{/*  {{- .Content -}}  */}}
+  </article>
+{{ end }}

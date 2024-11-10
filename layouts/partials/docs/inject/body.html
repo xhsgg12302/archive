@@ -1,0 +1,18 @@
+{{/*  
+    override /themes/amethyst
+
+    https://gohugo.io/functions/resources/concat/
+    {{ $global := resources.Get "js/global.js" }}  
+*/}}
+
+{{ "<!--" | safeHTML }} inject body end content, like js {{ "-->" | safeHTML }}
+{{- $backToTopjs := resources.Get "vanilla-back-to-top/vanilla-back-to-top.min.js" -}}
+{{- $indexjs := resources.Get "docs/index.js" -}}
+{{- $bundle := slice $backToTopjs $indexjs | resources.Concat "dist/bundle.js" | resources.Fingerprint "md5" | resources.Minify -}}
+<script src="{{$bundle.Permalink}}"></script>
+<script>
+    const hello = 'world';
+
+    // https://github.com/vfeskov/vanilla-back-to-top/blob/v7.2.1/OPTIONS.md
+    addBackToTop({diameter: 56, backgroundColor: 'rgb(255, 82, 82)', textColor: '#fff'})
+</script>

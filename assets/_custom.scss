@@ -1,0 +1,120 @@
+/* You can add custom styles here. */
+
+// @import "plugins/numbered";
+
+// override themes/amethyst/assets/_main.scss [230-249]
+.book-toc {
+    flex: 0 0 $toc-width;
+    font-size: $font-size-12;
+      
+    // 隐藏滚动条： see: https://segmentfault.com/a/1190000019710081
+    .book-toc-content {
+        width: $toc-width;
+        padding: $padding-16;
+
+        scrollbar-width: none; /* firefox */
+        -ms-overflow-style: none; /* IE 10+ */
+        direction: rtl;
+        scrollbar-gutter: stable both-edges;
+
+        @include fixed;
+        nav {
+            direction: ltr;
+        }
+    }
+
+    .book-toc-content::-webkit-scrollbar {
+        width: $toc-width;
+        padding: $padding-16;
+
+        display: none; /* Chrome Safari */
+        direction: rtl;
+        scrollbar-gutter: stable both-edges;
+
+        @include fixed;
+        nav {
+            direction: ltr;
+        }
+    }
+    img {
+        height: 1em;
+        width: 1em;
+    }
+    nav > ul > li:first-child {
+        margin-top: 0;
+    }
+}
+
+// override themes/amethyst/assets/_main.scss [99-138]
+.book-menu {
+    flex: 0 0 $menu-width;
+    font-size: $font-size-14;
+
+    .book-menu-content {
+        width: $menu-width;
+        padding: $padding-16;
+        background: var(--light);
+  
+        scrollbar-width: none; /* firefox */
+        -ms-overflow-style: none; /* IE 10+ */
+    
+        @include fixed;
+    }
+  
+    .book-menu-content::-webkit-scrollbar {
+      width: $menu-width;
+      padding: $padding-16;
+      background: var(--light);
+
+      display: none; /* Chrome Safari */
+  
+      @include fixed;
+    }
+  
+    a,
+    label {
+      color: inherit;
+      cursor: pointer;
+      word-wrap: break-word;
+    }
+  
+    a.active {
+      color: var(--tertiary);
+      text-decoration: underline;
+    }
+  
+    input.toggle + label + ul {
+      display: none;
+    }
+  
+    input.toggle:checked + label + ul {
+      display: block;
+    }
+  
+    // input.toggle + label::before {
+    //   content: "▸";
+    // }
+  
+    // input.toggle:checked + label::before {
+    //   content: "▾";
+    // }
+}
+
+// override themes/amethyst/assets/_amethyst.scss [122-124]
+.book-menu input.toggle+label::after {
+    font-size: 150%;
+}
+
+
+
+// otehr
+//.book-menu,
+//.book-toc,
+// .book-page.contanier{
+//     font-size: 12.5px;
+// }
+
+.book-page {
+  font-family: 'Source Sans Pro,Helvetica Neue,Arial,sans-serif';
+  letter-spacing: 0;
+}

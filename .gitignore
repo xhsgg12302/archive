@@ -1,3 +1,7 @@
 .hugo_build.lock
 public
 resources
+
+# obsidian search data
+static/linkmap
+assets/indices
