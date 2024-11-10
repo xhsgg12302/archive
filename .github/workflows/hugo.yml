@@ -37,7 +37,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /usr/local/bin/hugo
-          key: hugo-binary-${{ runner.os }}-${{ hashFiles('./go.sum')
+          key: hugo-binary-${{ runner.os }}-${{ hashFiles('./go.sum') }}
 
       - name: Install diy Hugo CLI if not cached
         if: steps.cache-hugo-binary.outputs.cache-hit != 'true'
@@ -54,7 +54,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /usr/local/bin/hugo
-          key: hugo-binary-${{ runner.os }}-${{ hashFiles('./go.sum')
+          key: hugo-binary-${{ runner.os }}-${{ hashFiles('./go.sum') }}
 
       - name: Checkout
         uses: actions/checkout@v4
