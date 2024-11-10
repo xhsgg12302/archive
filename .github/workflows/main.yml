@@ -1,0 +1,170 @@
+# Sample workflow for building and deploying a Hugo site to GitHub Pages
+name: Build and deploy archive
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches:
+      - hugo
+      - docsify
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+# Default to bash
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout hugo branch
+        uses: actions/checkout@v4
+        with:
+          ref: hugo
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Cache Hugo binary
+        id: cache-hugo-binary
+        uses: actions/cache@v3
+        with:
+          path: /usr/local/bin/hugo
+          key: hugo-binary-${{ runner.os }}-${{ hashFiles('./go.sum') }}
+
+      - name: Install Updated Hugo CLI if not cached
+        if: steps.cache-hugo-binary.outputs.cache-hit != 'true'
+        run: |
+          git clone https://github.com/12302-bak/hugo.git
+          cd hugo
+          git checkout _12302
+          CGO_ENABLED=1 GOBIN=/usr/local/bin go install -tags extended
+          # Verify Hugo installation
+          /usr/local/bin/hugo version
+
+      # 启用 github pages，获取和设置 metadata，like base_url
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build with Hugo
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+          HUGO_ENVIRONMENT: production
+          TZ: Asia/Shanghai
+        run: |
+          hugo \
+            --gc \
+            --minify \
+            --baseURL "${{ steps.pages.outputs.base_url }}/hugo/"
+  
+      - name: Put hugo to temp subdir
+        run: |
+          mkdir -p hugo ${{ runner.temp }}/content  && mv public hugo && mv hugo/public hugo/hugo && mv hugo/hugo ${{ runner.temp }}/content
+ 
+      - name: Checkout docsify branch
+        uses: actions/checkout@v4
+        with:
+          ref: docsify
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Put docsify to temp subdir
+        run: |
+          mkdir -p docsify/docsify && mv .images dist docs _sidebar.md .nojekyll index.html README.md LICENSE docsify/docsify/ && mv docsify/docsify ${{ runner.temp }}/content
+          echo '<!DOCTYPE html><html lang="en"><body><a href="./hugo/">hugo</a><br><a href="./docsify/#/">docsify</a></body></html>' > ${{ runner.temp }}/content/index.html
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/content
+
+  # Deployment job
+  deploy-gh-pages:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+
+  deploy-vps-tech:
+    environment:
+      name: vps
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: hugo
+          submodules: recursive
+          fetch-depth: 0
+      - name: Cache Hugo binary
+        uses: actions/cache@v3
+        with:
+          path: /usr/local/bin/hugo
+          key: hugo-binary-${{ runner.os }}-${{ hashFiles('./go.sum') }}
+      - name: Build with Hugo
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+          HUGO_ENVIRONMENT: production
+          TZ: Asia/Shanghai
+        run: |
+          hugo \
+            --gc \
+            --minify \
+            --baseURL "https://tech.wtfu.site/"
+      
+      - name: Deploy to vps tech step
+        uses: easingthemes/ssh-deploy@v2.2.11
+        env:
+          ARGS: "-avz --delete"
+          # EXCLUDE: "/.git/, /.github/"
+          SOURCE: "./public/"
+          REMOTE_HOST: "wtfu.site"
+          SSH_PRIVATE_KEY: ${{ secrets.DOCS_ACCESS_TOKEN }}
+          REMOTE_PORT: ${{ secrets.DOCS_REMOTE_PORT }}
+          REMOTE_USER: ${{ secrets.DOCS_USER }}
+          TARGET: ${{ secrets.DOCS_TARGET_DIR_HUGO }}
+
+  deploy-vps-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: docsify
+          submodules: recursive
+          fetch-depth: 0
+      
+      - name: Deploy to vps docs step
+        uses: easingthemes/ssh-deploy@v2.2.11
+        env:
+          ARGS: "-avz --delete"
+          EXCLUDE: "/.git/, /.github/"
+          SOURCE: "./"
+          REMOTE_HOST: "wtfu.site"
+          SSH_PRIVATE_KEY: ${{ secrets.DOCS_ACCESS_TOKEN }}
+          REMOTE_PORT: ${{ secrets.DOCS_REMOTE_PORT }}
+          REMOTE_USER: ${{ secrets.DOCS_USER }}
+          TARGET: ${{ secrets.DOCS_TARGET_DIR_DOCSIFY }}
