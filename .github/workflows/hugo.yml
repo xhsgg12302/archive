@@ -80,7 +80,7 @@ jobs:
   
       - name: put to subdir
         run: |
-          mkdir hugo && mv public hugo
+          mkdir hugo && mv public hugo && mv hugo/public hugo/hugo
           echo '<!DOCTYPE html><html lang="en"><body><a href="./hugo">hugo</a></body></html>' > hugo/index.html
 
       - name: Upload artifact
@@ -112,7 +112,11 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
-
+      - name: Cache Hugo binary
+        uses: actions/cache@v3
+        with:
+          path: /usr/local/bin/hugo
+          key: hugo-binary-${{ runner.os }}-${{ hashFiles('./go.sum') }}
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
