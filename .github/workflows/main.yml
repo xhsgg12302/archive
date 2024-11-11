@@ -112,17 +112,10 @@ jobs:
           TARGET: ${{ secrets.DOCS_TARGET_DIR_HUGO }}
 
   # Build job
-  build-gh-pages:
+  build-all-gh-pages:
     runs-on: ubuntu-latest
     needs: install-hugo-checked
     steps:
-      - name: Checkout hugo branch
-        uses: actions/checkout@v4
-        with:
-          ref: hugo
-          submodules: recursive
-          fetch-depth: 0
-
       - name: Cache Hugo binary
         id: cache-hugo-binary
         uses: actions/cache@v3
@@ -130,10 +123,17 @@ jobs:
           path: /usr/local/bin/hugo
           key: hugo-binary-${{ runner.os }}-${{ hashFiles('./go.sum') }}
 
-      # 启用 github pages，获取和设置 metadata，like base_url
+      # 启用 github pages，获取和设置 metadata，比如 base_url
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+
+      - name: Checkout hugo branch
+        uses: actions/checkout@v4
+        with:
+          ref: hugo
+          submodules: recursive
+          fetch-depth: 0
 
       - name: Build with Hugo
         env:
@@ -160,6 +160,9 @@ jobs:
       - name: Put docsify to temp subdir
         run: |
           mkdir -p docsify/docsify && mv .images dist docs _sidebar.md .nojekyll index.html README.md LICENSE docsify/docsify/ && mv docsify/docsify ${{ runner.temp }}/content
+
+      - name: Put index.html to temp subdir
+        run: |
           echo '<!DOCTYPE html><html lang="en"><body><a href="./hugo/">hugo</a><br><br><a href="./docsify/#/">docsify</a></body></html>' > ${{ runner.temp }}/content/index.html
 
       - name: Upload artifact
@@ -168,12 +171,12 @@ jobs:
           path: ${{ runner.temp }}/content
 
   # Deployment job
-  deploy-gh-pages:
+  deploy-all-gh-pages:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build-gh-pages
+    needs: build-all-gh-pages
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
