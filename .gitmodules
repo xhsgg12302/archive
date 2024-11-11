@@ -1,6 +1,8 @@
 [submodule "docs"]
 	path = docs
 	url = https://github.com/xhsgg12302/archive-docs.git
+	branch = master
 [submodule ".images"]
 	path = .images
 	url = https://github.com/xhsgg12302/archive-assets.git
+	branch = master
