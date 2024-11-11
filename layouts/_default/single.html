@@ -6,11 +6,20 @@
     <h1 class="title" style="text-align: center;">{{ partial "docs/title.html" . }}</h1>
     <div style="text-align: center;">
         {{ partial "tags" .}}
-        {{ with .GitInfo }} 
-          <p class="tracked">
-            <span>Create: {{- .CreateDate | time.Format "2006/01/02" -}}</span>
-            <span style="padding-left:2em">Update: {{- .AuthorDate | time.Format (default "January 2, 2006" "2006-01-02") -}}</span>
-          </p>
+        {{ with .GitInfo }}
+          {{ if .FromGetJson }}
+            <p class="tracked">
+              <span style="color:red">FGJ:</span>
+              <span>Create: {{- .FromGetJson.CreateDate | time.Format "2006/01/02" -}}</span> 
+              <span style="padding-left:2em">Update: {{- .FromGetJson.AuthorDate | time.Format (default "January 2, 2006" "2006-01-02") -}}</span>
+            </p>
+          {{ else }}
+            <p class="tracked">
+              <span>Create: {{- .CreateDate | time.Format "2006/01/02" -}}</span> 
+              <span style="color:red">{{ .AbbreviatedHash }}</span>
+              <span style="padding-left:2em">Update: {{- .AuthorDate | time.Format (default "January 2, 2006" "2006-01-02") -}}</span>
+            </p>
+          {{ end }}
         {{ end }}
     </div>
     {{ partial "quartz/textprocessing" . }}
