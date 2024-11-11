@@ -1,6 +1,6 @@
 [submodule "themes/amethyst"]
 	path = themes/amethyst
-	url = https://github.com/64bitpandas/amethyst.git
+	url = https://github.com/12302-bak/amethyst.git
 [submodule "static/.images"]
 	path = static/.images
 	url = https://github.com/xhsgg12302/archive-assets.git
