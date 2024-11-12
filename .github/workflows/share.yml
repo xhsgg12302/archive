@@ -1,0 +1,33 @@
+# Sample workflow for building and deploying a Hugo site to GitHub Pages
+name: Shared Hugo CLI Cache
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch: 
+
+# Default to bash
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  install-hugo-checked:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Hugo binary
+        id: cache-hugo-binary
+        uses: actions/cache@v4
+        with:
+          lookup-only: true
+          path: /usr/local/bin/hugo
+          key: hugo-binary-${{ runner.os }}-${{ hashFiles('./go.sum') }}
+
+      - name: Install Updated Hugo CLI if not cached
+        if: steps.cache-hugo-binary.outputs.cache-hit != 'true'
+        run: |
+          git clone https://github.com/12302-bak/hugo.git
+          cd hugo
+          git checkout _12302
+          CGO_ENABLED=1 GOBIN=/usr/local/bin go install -tags extended
+          # Verify Hugo installation
+          /usr/local/bin/hugo version
