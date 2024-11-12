@@ -11,7 +11,13 @@
             <p class="tracked">
               <span style="color:red">FGJ:</span>
               <span>Create: {{- .FromGetJson.CreateDate | time.Format "2006/01/02" -}}</span> 
-              <span style="padding-left:2em">Update: {{- .FromGetJson.AuthorDate | time.Format (default "January 2, 2006" "2006-01-02") -}}</span>
+              <span style="padding-left:2em">Update: 
+                {{- if .AuthorDate.After  .FromGetJson.AuthorDate }} 
+                  ({{ .AuthorDate | time.Format (default "January 2, 2006" "2006-01-02") -}})
+                {{ else }}
+                  [{{ .FromGetJson.AuthorDate | time.Format (default "January 2, 2006" "2006-01-02") -}}]
+                {{ end }}
+              </span>
             </p>
           {{ else }}
             <p class="tracked">
