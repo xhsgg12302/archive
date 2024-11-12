@@ -12,6 +12,7 @@ on:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
+  actions: write
   contents: read
   pages: write
   id-token: write
@@ -52,7 +53,7 @@ jobs:
           git submodule update  --init --recursive --remote
       
       - name: Deploy to vps docs step
-        uses: easingthemes/ssh-deploy@v2.2.11
+        uses: easingthemes/ssh-deploy@v5.1.0
         env:
           ARGS: "-avz --delete"
           EXCLUDE: "/.git/, /.github/"
@@ -96,7 +97,7 @@ jobs:
             --baseURL "https://tech.wtfu.site/"
       
       - name: Deploy to vps tech step
-        uses: easingthemes/ssh-deploy@v2.2.11
+        uses: easingthemes/ssh-deploy@v5.1.0
         env:
           ARGS: "-avz --delete"
           # EXCLUDE: "/.git/, /.github/"
