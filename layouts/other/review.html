@@ -1,3 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ default .Site.Language.Lang .Site.LanguageCode  }}" dir="{{ default "ltr" .Site.Language.LanguageDirection }}">
-{{ .Content }}
+    <head>
+        {{ partial "docs/inject/head" . }}
+      </head>
+    <body>
+        {{ .Content }}
+    </body>
+</html>

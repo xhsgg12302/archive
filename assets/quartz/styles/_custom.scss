@@ -79,9 +79,10 @@
           background: var(--light);
           outline: none;
   
-          &:hover, &:focus {
-            background: rgba(180, 180, 180, 0.15);
-          }
+          // &:hover, &:focus {
+          //   //background: rgba(180, 180, 180, 0.15);
+          //   background: inherit;
+          // }
   
           &:first-of-type {
             border-top-left-radius: 5px;
@@ -97,6 +98,10 @@
           & > h3, & > p {
             margin: 0;
           }
+        }
+        & .selected {
+          background-color: #c6c3af; /* 选中的背景颜色 */
+          border: 1px solid #ccc; /* 选中的边框 */
         }
       }
     }

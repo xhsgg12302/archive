@@ -9,6 +9,8 @@ enableGitInfo: true
 # gitRepoDir: ".git/modules/content"
 gitRepoDir: "content"
 
+enableEmoji: true
+
 # # Needed for mermaid/katex shortcodes
 markup:
   goldmark:
@@ -30,9 +32,16 @@ menu:
   #     url: "https://google.com"
   #     weight: 10
   after:
-    - name: "Github[branch-hugo]"
-      url: "https://github.com/xhsgg12302/archive/tree/hugo"
+    - name: LINKS
       weight: 10
+    - name: HUGOIO
+      url: https://gohugo.io/getting-started/quick-start/
+      weight: 20
+      parent: LINKS
+    - name: REPO
+      url: https://github.com/xhsgg12302/archive/tree/hugo
+      weight: 30
+      parent: LINKS
 
 params:
 

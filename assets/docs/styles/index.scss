@@ -1,4 +1,40 @@
 @import "tachyons.scss";
+@import "docsify-example-panels.scss";
+
+// alerts
+@import "docsify-plugin-flexible-alerts.scss";
+.markdown-section p.warn {
+  background: rgba(66, 185, 131, .1);
+  border-radius: 2px;
+  padding: 1rem;
+}
+.markdown-section p.tip {
+    background-color: #f8f8f8;
+    border-bottom-right-radius: 2px;
+    border-left: 4px solid #f66;
+    border-top-right-radius: 2px;
+    margin: 2em 0;
+    padding: 12px 24px 12px 30px;
+    position: relative;
+}
+.markdown-section p.tip::before{
+    background-color: #f66;
+    border-radius: 100%;
+    color: #fff;
+    content: "!";
+    font-family: Dosis, Source Sans Pro, Helvetica Neue, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    left: -12px;
+    line-height: 20px;
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    top: 14px;
+}
+//=============================================
+
 
 .hr-division-line:after {
     content: "§";

@@ -1,0 +1,43 @@
+<!--
+  This is template for hugo menus, accepts MenuEntity as context
+  https://gohugo.io/variables/menus/
+-->
+{{ if . }}
+  {{ template "book-menu-hugo" . }}
+{{ end }}
+
+{{ define "book-menu-hugo" }}
+<ul>
+  {{ range . }}
+  <li>
+    {{ if .HasChildren }}
+      <input type="checkbox" id="section-{{ md5 .Page }}" class="toggle" />
+      <label for="section-{{ md5 .Page }}" class="flex justify-between">
+        <a {{ with .Params.class }}class="{{ . }}"{{ end }} {{ if not .Page }}target="_blank" rel="noopener"{{ end }}>
+          {{- .Pre -}}
+          {{ with .Page }}
+            {{ partial "docs/title" .Page }}
+          {{ else }}
+            {{ .Name }}
+          {{ end }}
+          {{- .Post -}}
+        </a>
+      </label>
+    {{ else }}
+      <a href="{{ .URL }}" {{ with .Params.class }}class="{{ . }}"{{ end }} {{ if not .Page }}target="_blank" rel="noopener"{{ end }}>
+        {{- .Pre -}}
+        {{ with .Page }}
+          {{ partial "docs/title" .Page }}
+        {{ else }}
+          {{ .Name }}
+        {{ end }}
+        {{- .Post -}}
+      </a>
+    {{ end }}
+    {{- with .Children }}
+      {{ template "book-menu-hugo" . }}
+    {{- end }}
+  </li>
+  {{ end }}
+</ul>
+{{ end }}
