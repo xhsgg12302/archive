@@ -1,7 +1,6 @@
 baseURL: https://example.com
 languageCode: 'en-us'
 title: 'archive'
-theme: [""]
 
 # Book configuration
 disablePathToLower: true
