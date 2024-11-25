@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ default .Site.Language.Lang .Site.LanguageCode  }}" dir="{{ default "ltr" .Site.Language.LanguageDirection }}">
     <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="/.images/_media/favicon-tech.ico" type="image/x-icon">
         {{ partial "docs/inject/head" . }}
       </head>
-    <body>
-        {{ .Content }}
+    <body style="padding-left:5%; padding-right:8%;">
+        <article class="12302-review markdown">
+            {{ .Content }}
+        </article>
+        {{ partial "docs/inject/body" . }}
     </body>
 </html>

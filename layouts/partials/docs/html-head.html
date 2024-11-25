@@ -1,0 +1,61 @@
+
+{{/*  <meta http-equiv="Refresh" content="0; url='{{ . }}'" />  */}}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+{{- with or .Description .Summary site.Params.description | plainify | htmlUnescape -}}
+  <meta property="description" content="{{ trim . "\n\r\t " }}">
+{{- end }}
+
+{{- template "_internal/opengraph.html" . -}}
+{{- template "_internal/google_analytics.html" . -}}
+{{- $manifest := resources.Get "manifest/manifest.json" | resources.ExecuteAsTemplate "manifest/manifest.json" . }}
+  <link rel="manifest" href="{{ $manifest.RelPermalink }}">
+
+  <title>{{ partial "docs/title" . }} | {{ .Site.Params.Title -}}</title>
+  <link rel="icon" href="{{ ".images/_media/favicon-tech.ico" | relURL }}" type="image/x-icon">
+
+<!-- RSS -->
+{{- with .OutputFormats.Get "rss" -}}
+  {{ printf `   <link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+{{ end -}}
+
+<!-- Theme stylesheet, you can customize scss by creating `assets/custom.scss` in your website -->
+{{- $styles := resources.Get "dist/_main/book.scss" | resources.ExecuteAsTemplate "dist/_main/book.scss" . | css.Sass | resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $styles.RelPermalink }}" {{ template "integrity" $styles }}>
+
+{{- define "integrity" -}} {{- if (urls.Parse .Permalink).Host -}} integrity="{{ .Data.Integrity }}" crossorigin="anonymous" {{- end -}} {{- end -}}
+
+<!-- CSS Stylesheets and Fonts -->
+{{$sass := resources.Match "quartz/styles/[!_]*.scss" }}
+{{$css := slice }}
+{{range $sass}}
+  {{$scss := . | css.Sass (dict "outputStyle" "compressed") }} {{$css = $css | append $scss}}
+{{end}}
+
+<!-- _custom.scss -->
+{{ with resources.Get "quartz/styles/_custom.scss" }}
+  {{$scss := . | css.Sass (dict "outputStyle" "compressed") }} {{$css = $css | append $scss}}
+{{ end }}
+
+{{$finalCss := $css | resources.Concat "styles.css" | resources.Fingerprint "md5" | resources.Minify  }}
+<link href="{{$finalCss.Permalink}}" rel="stylesheet" />
+
+
+{{$lightSyntax := resources.Get "quartz/styles/_light_syntax.scss" | css.Sass (dict "outputStyle" "compressed") | resources.Fingerprint "md5" | resources.Minify  }}
+<link href="{{$lightSyntax.Permalink}}" rel="stylesheet" id="theme-link">
+
+{{- "<!--" | safeHTML }} below code from `docs/html-head.html` {{ "-->" | safeHTML }}
+
+{{ partial "docs/inject/head" . }}
+{{- "<!--" | safeHTML }} below code from `docs/inject/head.html` {{ "-->" | safeHTML }}
+
+
+
+
+{{$scripts := (slice "quartz/js/darkmode.js") }}
+{{range $scripts}}
+{{$scriptname := .}}
+{{ $s := resources.Get $scriptname | resources.ExecuteAsTemplate $scriptname . | resources.Fingerprint "md5" | resources.Minify }}
+<script src="{{$s.Permalink}}"></script>
+{{end}}

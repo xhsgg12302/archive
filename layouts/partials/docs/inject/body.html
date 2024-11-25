@@ -6,13 +6,45 @@
 */}}
 
 {{ "<!--" | safeHTML }} inject body end content, like js {{ "-->" | safeHTML }}
-{{- $backToTopjs := resources.Get "vanilla-back-to-top/vanilla-back-to-top.min.js" -}}
-{{- $indexjs := resources.Get "docs/index.js" -}}
-{{- $bundle := slice $backToTopjs $indexjs | resources.Concat "dist/bundle.js" | resources.Fingerprint "md5" | resources.Minify -}}
+{{- $backToTopJs := resources.Get "dist/vanilla-back-to-top/vanilla-back-to-top.min.js" -}}
+{{- $zoomImageJs := resources.Get "dist/zoom-image/medium-zoom.min.js" -}}
+{{- $prismJs := resources.Get "dist/code-highlight/prism-js/prism.js" -}}
+{{- $copyCodeJs := resources.Get "dist/copy-code/copy-code.js" -}}
+{{- $tabsInitJs := resources.Get "dist/docsify-tabs/tabs-init.js" -}}
+{{- $menuInitJs := resources.Get "dist/menu/menu-init.js" -}}
+{{- $indexjs := resources.Get "dist/index.js" -}}
+{{- $bundle := slice $backToTopJs $zoomImageJs $prismJs $copyCodeJs $tabsInitJs $menuInitJs $indexjs | resources.Concat "dist/index.bundle.js" | resources.Fingerprint "md5" | resources.Minify -}}
 <script src="{{$bundle.Permalink}}"></script>
+<script async type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- 
+    mermaid return [object Promise]
+    https://stackoverflow.com/questions/76530311/mermaid-in-docsify-return-object-promise
+
+    check downloaded old version of mermaid with below code
+    ```mermaid
+    info
+    ```
+    ==> 9.4.3
+-->
+<script async src="https://cdn.jsdelivr.net/npm/mermaid@9.4.3/dist/mermaid.min.js"></script>
 <script>
     const hello = 'world';
 
     // https://github.com/vfeskov/vanilla-back-to-top/blob/v7.2.1/OPTIONS.md
     addBackToTop({diameter: 56, backgroundColor: 'rgb(255, 82, 82)', textColor: '#fff'})
+
+
+    // Code borrowed from:
+    // https://github.com/docsifyjs/docsify/blob/v4.12.2/src/plugins/zoom-image.js
+    var matchesSelector =
+    Element.prototype.matches ||
+    Element.prototype.webkitMatchesSelector ||
+    Element.prototype.msMatchesSelector;
+
+    var zoom;
+    var elms = Array.apply(null, document.querySelectorAll('.markdown img:not(.emoji):not([data-no-zoom])'));
+    elms = elms.filter(function (elm) { return matchesSelector.call(elm, 'a img') === false; });
+    if (zoom) { zoom.detach(); }
+    zoom = mediumZoom(elms);
+
 </script>

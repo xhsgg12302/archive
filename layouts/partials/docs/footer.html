@@ -1,0 +1,39 @@
+
+{{/*  
+<hr/>
+
+{{if $.Site.Params.enableFooter}}
+<div class="page-end" id="footer">
+    <div class="backlinks-container">
+        {{partial "quartz/backlinks.html" .}}
+    </div>
+    <div>
+        {{partial "quartz/graph.html" .}}
+    </div>
+</div>
+{{end}}  */}}
+ 
+<hr class="hr-division-line" style="overflow: visible; padding:0; border:none; border-top: medium double cadetblue; color: cadetblue; text-align:center; height: 4px; margin-top:120px; background-color: cadetblue;"/>
+<div class="book-comments">
+    <!-- This partial can be replaced to support other commenting engines -->
+    {{ template "_internal/disqus.html" . }}
+</div>
+
+<!-- Contact Info -->
+<div id="copyright" style="font-size: 15px;"></div>
+<script>
+    var footer = [
+        '<hr/>',
+        // copy from https://cmake.org/cmake/help/latest/guide/tutorial/Adding%20a%20Library.html
+        '<footer style="text-align: center;"> ' + 
+            '© Copyright 2021' + '-' + new Date().getFullYear() + ' 12302, Inc. and Contributors. Created using ' + 
+            '<a style="color: inherit; text-decoration: underline;" href="https://gohugo.io/" target="_blank">Hugo</a>' + "&nbsp;" + 
+            '<a style="color: inherit; text-decoration: underline;" href="https://github.com/gohugoio/hugo/tree/62567d38205a61134a6822d37a534520772419f1" target="_blank">' + "build-62567d38" + '</a>' + "&nbsp;&nbsp;" + 
+            '<a style="color: inherit;" href="https://github.com/gohugoio/hugo/compare/master...12302-bak:hugo:_12302" target="_blank">[Updated]</a>' + ' | with theme ' +
+            '<a style="color: inherit; text-decoration: underline;" href="https://github.com/64bitpandas/amethyst" target="_blank">[amethyst] </a>' + 
+            '<a style="color: inherit;" href="https://github.com/64bitpandas/amethyst/compare/main...12302-bak:amethyst:12302" target="_blank">[Update] </a>' + 
+            '<a style="color: inherit;" href="https://github.com/xhsgg12302/archive/tree/hugo" target="_blank">[Override] </a> </br>' + 
+        '</footer>',
+    ].join('');
+    document.getElementById('copyright').innerHTML = footer;
+</script>

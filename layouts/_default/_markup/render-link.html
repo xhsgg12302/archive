@@ -1,0 +1,28 @@
+{{$dashedurl := replace .Destination "%20" "-" }}
+{{/*  {{$external := strings.HasPrefix $dashedurl (or "ed2k" "http") }}  */}}
+{{$external := or (hasPrefix $dashedurl "ed2k") (hasPrefix $dashedurl "magnet") (hasPrefix $dashedurl "http") }}
+{{- if $external -}}
+{{/*  https://kb.osr-plastic.org/functions/safehtmlattr/  */}}
+<a {{ printf "href=%q" .Destination | safeHTMLAttr }} rel="noopener" target="_blank">{{ .Text | safeHTML }}</a>
+{{- else -}}
+{{$trimmed := strings.TrimPrefix "/docs" (.Destination | safeURL)}}
+{{$spacedurl := replace $trimmed "README.md" ""  }}
+{{$spacedurl = replace $spacedurl ".md" "/" }}
+{{$relativeUrl := (cond ( and (and (ne .Page.File.TranslationBaseName "README") (hasPrefix $spacedurl ".")) (ge (len $spacedurl) 2) )
+                      ( cond (hasPrefix $spacedurl "./") 
+                          (print "." $spacedurl )
+                          ( cond (hasPrefix $spacedurl "../") 
+                              (print "../" $spacedurl )
+                              $spacedurl
+                          )
+                      )
+                      $spacedurl
+                  ) 
+}}
+
+{{$fixedUrl := $relativeUrl | urlize}}
+{{/*  {{$nonexistent := eq (.Page.GetPage $spacedurl).RelPermalink ""}}  */}}
+{{$nonexistent := false }}
+{{$rooted := default $fixedUrl ((.Page.GetPage $fixedUrl).RelPermalink) }}
+<a {{if not $nonexistent}}href="{{$rooted}}" {{end}} rel="noopener" class="internal-link{{if $nonexistent}} broken{{end}}" data-src="{{$rooted}}">{{- .Text | safeHTML -}}</a>
+{{- end -}}

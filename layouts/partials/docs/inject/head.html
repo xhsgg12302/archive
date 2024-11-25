@@ -1,13 +1,9 @@
 {{/*  
     override /themes/amethyst
 */}}
-
-
-{{$sass := resources.Match "docs/styles/[!_]*.scss" }}
 {{$css := slice }}
-{{range $sass}}
-    {{$scss := . | css.Sass (dict "outputStyle" "compressed") }}
-    {{$css = $css | append $scss}}
-{{end}}
-{{$finalCss := $css | resources.Concat "custom.styles.css" | resources.Fingerprint "md5" | resources.Minify  }}
+{{- $indexCss := resources.Get "dist/index.scss" | css.Sass (dict "outputStyle" "compressed") -}}
+
+{{$css = $css | append $indexCss }}
+{{$finalCss := $css | resources.Concat "dist/index.bundle.css" | resources.Fingerprint "md5" | resources.Minify  }}
 <link href="{{$finalCss.Permalink}}" rel="stylesheet" />

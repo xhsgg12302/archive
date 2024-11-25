@@ -1,7 +1,7 @@
 baseURL: https://example.com
 languageCode: 'en-us'
 title: 'archive'
-theme: ["amethyst"]
+theme: [""]
 
 # Book configuration
 disablePathToLower: true
@@ -12,13 +12,26 @@ gitRepoDir: "content"
 enableEmoji: true
 
 # # Needed for mermaid/katex shortcodes
+# see: https://gohugo.io/getting-started/configuration-markup/
 markup:
   goldmark:
     renderer:
       unsafe: true
+    extensions:
+      # 不使用自带的 table 扩展，使用 goldmark 自带的就行。
+      table: false
   tableOfContents:
     startLevel: 2
     endLevel: 4
+  # https://gohugo.io/getting-started/configuration-markup/#highlight
+  highlight:
+    # 去除内置代码高亮，加快编译速度，使用 js 进行高亮。
+    codeFences: false
+    noClasses: false
+    noHl: true
+
+ignoreFiles:
+  - content.*/\w+\.html$
 
 # Multi-lingual mode config
 # There are different options to translate files
@@ -82,7 +95,7 @@ params:
   enableGitHubEdit: true
 
   # whether to render mermaid diagrams
-  enableMermaid: true
+  enableMermaid: false
 
   # Link to your Github repo
   GitHubLink: https://github.com/xhsgg12302/archive
