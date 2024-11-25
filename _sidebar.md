@@ -248,6 +248,6 @@
 ----------------------------------------------------------------------------------------------------
 * [OTHER](/docs/other/)
     - [DOCSIFY_DOC](https://docsify.js.org/#/zh-cn/)
-    - [TEMP](/docs/template/)
-        + [RENDER](/docs/template/temp/)
+    - [TEMP](/docs/other/template/)
+        + [RENDER](/docs/other/template/temp/)
 
