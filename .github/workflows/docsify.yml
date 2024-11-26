@@ -144,8 +144,6 @@ jobs:
       - name: Put hugo to temp subdir
         run: |
           mkdir -p hugo ${{ runner.temp }}/content  && mv public hugo && mv hugo/public hugo/hugo && mv hugo/hugo ${{ runner.temp }}/content
-          # mv hugo .images to root dir
-          mv ${{ runner.temp }}/content/hugo/.images ${{ runner.temp }}/content
  
       - name: Checkout docsify branch
         uses: actions/checkout@v4
