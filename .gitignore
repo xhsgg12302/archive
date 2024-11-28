@@ -5,3 +5,5 @@ resources
 # obsidian search data
 static/linkmap
 assets/indices
+
+**/.DS_Store

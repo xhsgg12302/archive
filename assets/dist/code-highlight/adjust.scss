@@ -39,7 +39,8 @@ pre {
 
 .line-numbers .line-numbers-rows {
     line-height: inherit;
-    margin-top: 2px;
+    // 行数上边距
+    //margin-top: 2px;
 }
 pre[class*=language-].line-numbers {
     position: static;
