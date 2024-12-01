@@ -4,11 +4,15 @@ title: 'archive'
 
 # Book configuration
 disablePathToLower: true
+
 enableGitInfo: true
 # gitRepoDir: ".git/modules/content"
 gitRepoDir: "content"
 
 enableEmoji: true
+
+# https://gohugo.io/templates/robots/
+# enableRobotsTXT: true
 
 # # Needed for mermaid/katex shortcodes
 # see: https://gohugo.io/getting-started/configuration-markup/

@@ -1,0 +1,2 @@
+User-Agent: *
+Sitemap: https://tech.wtfu.site/sitemap.xml
