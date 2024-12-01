@@ -4,6 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 {{- with or .Description .Summary site.Params.description | plainify | htmlUnescape -}}
+  <meta name="description" content="{{ trim . "\n\r\t " }}">
   <meta property="description" content="{{ trim . "\n\r\t " }}">
 {{- end }}
 

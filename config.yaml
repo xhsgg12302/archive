@@ -180,3 +180,5 @@ params:
 services:
   disqus:
     shortname: archive-5
+  googleAnalytics:
+    id: G-E9B9ZHWYYR
