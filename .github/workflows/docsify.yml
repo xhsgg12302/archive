@@ -89,7 +89,7 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "https://tech.wtfu.site/"
+            --baseURL "https://tech.wtfu.site"
       
       - name: Deploy to vps tech step
         uses: easingthemes/ssh-deploy@v5.1.0
@@ -139,7 +139,7 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/hugo/"
+            --baseURL "${{ steps.pages.outputs.base_url }}/hugo"
   
       - name: Put hugo to temp subdir
         run: |
