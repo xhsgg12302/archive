@@ -113,3 +113,7 @@ details[open] summary {
 .book-menu-content nav ul>li.file::before {
     background: center/contain no-repeat url(data:image/svg+xml;base64,PHN2ZyB0PSIxNTk4NTQ1NjIzOTMxIiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjgxNzMiCiAgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiPgogIDxwYXRoCiAgICBkPSJNODEyLjggMjY4LjhsLTE4NS42LTE4NS42Yy0xMi44LTEyLjgtMjguOC0xOS4yLTQ0LjgtMTkuMkgyNTZjLTM1LjIgMC02NCAyOC44LTY0IDY0djc2OGMwIDM1LjIgMjguOCA2NCA2NCA2NGg1MTJjMzUuMiAwIDY0LTI4LjggNjQtNjRWMzEzLjZjMC0xNi02LjQtMzItMTkuMi00NC44eiBtLTcwLjQgMTkuMkg2MDhWMTUzLjZMNzQyLjQgMjg4ek03MDQgODk2SDI1NlYxMjhoMjg4djE2MGMwIDM1LjIgMjguOCA2NCA2NCA2NGgxNjB2NTQ0aC02NHoiCiAgICBwLWlkPSI4MTc0Ij48L3BhdGg+Cjwvc3ZnPgo=)
 }
+
+// `medium-zoom 如何覆盖position: fixed 的元素啊，比如 header`，来自阿里通义的问答。
+.medium-zoom-overlay { z-index: 10000; /* 确保这个值高于其他固定位置元素 */ }
+.medium-zoom-image { z-index: 10001; /* 图片应该有更高的 z-index */ }
