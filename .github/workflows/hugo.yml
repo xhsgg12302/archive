@@ -29,7 +29,7 @@ defaults:
 
 jobs:
   trigger-main-workflow:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Dispatch event to main branch
         uses: benc-uk/workflow-dispatch@v1
@@ -39,7 +39,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
   deploy-vps-docs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -66,7 +66,7 @@ jobs:
   deploy-vps-tech:
     environment:
       name: vps
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: trigger-main-workflow
     steps:
       - name: Checkout
@@ -109,7 +109,7 @@ jobs:
 
   # Build job
   build-all-gh-pages:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: trigger-main-workflow
     steps:
       - name: Cache Hugo binary
@@ -177,7 +177,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: build-all-gh-pages
     steps:
       - name: Deploy to GitHub Pages
