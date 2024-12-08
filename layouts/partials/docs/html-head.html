@@ -1,9 +1,12 @@
 
-{{/*  <meta http-equiv="Refresh" content="0; url='{{ . }}'" />  */}}
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{{- /*  <meta http-equiv="Refresh" content="0; url='{{ . }}'" />  */ -}}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  {{/*  https://gohugo.io/functions/hugo/generator/  */ -}}
+  {{ hugo.GeneratorBuildInfo }}
 
-{{- with or .Description .Summary site.Params.description | plainify | htmlUnescape -}}
+{{- with or .Description .Summary site.Params.description | plainify | htmlUnescape }}
   <meta name="description" content="{{ trim . "\n\r\t " }}">
   <meta property="description" content="{{ trim . "\n\r\t " }}">
 {{- end }}
