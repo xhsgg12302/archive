@@ -17,7 +17,7 @@ mark.clever {
     border-radius: 1em 0;
     //padding: .2rem;
 }
-mark.gray {
+mark.leaf {
     //display: inline-block;
     color: inherit;
     background: none;
@@ -35,5 +35,25 @@ mark.box {
     //margin: .4em 0;
     background-color: transparent;
 }
-mark.red { outline-color: red;}
-mark.green { outline-color: green;}
+
+mark.under {
+    // 弃用，对于 span 来说不连续
+    // text-decoration: underline 3px;  /* 添加下划线 */
+    --box-shadow-color: transparent; /* 默认颜色 */
+    box-shadow: 0 3px 0 var(--box-shadow-color);
+    color: inherit;
+    background-color: transparent; /* 移除默认背景色 */
+}
+
+mark.red { outline-color: red; --box-shadow-color: red;}
+mark.green { outline-color: green; --box-shadow-color: green;}
+mark.blue { outline-color: blue; --box-shadow-color: blue;}
+mark.yellow { outline-color: yellow; --box-shadow-color: yellow;}
+mark.aqua { outline-color: aqua; --box-shadow-color: aqua;}
+mark.brown { outline-color: brown; --box-shadow-color: brown;}
+mark.chartreuse { outline-color: chartreuse; --box-shadow-color: chartreuse;}
+mark.chocolate { outline-color: chocolate; --box-shadow-color: chocolate;}
+mark.darkcyan { outline-color: darkcyan; --box-shadow-color: darkcyan;}
+mark.deepskyblue { outline-color: deepskyblue; --box-shadow-color: deepskyblue;}
+mark.deeppink { outline-color: deeppink; --box-shadow-color: deeppink;}
+mark.dodgerblue { outline-color: dodgerblue; --box-shadow-color: dodgerblue;}
