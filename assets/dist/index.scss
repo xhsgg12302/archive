@@ -117,3 +117,15 @@ details[open] summary {
 // `medium-zoom 如何覆盖position: fixed 的元素啊，比如 header`，来自阿里通义的问答。
 .medium-zoom-overlay { z-index: 10000; /* 确保这个值高于其他固定位置元素 */ }
 .medium-zoom-image { z-index: 10001; /* 图片应该有更高的 z-index */ }
+
+// 对于 paragraph 中的 span 展开折叠样式定义。
+/* 隐藏原生 checkbox 样式 */
+input.span.toggle { appearance: none; /* 隐藏默认样式 */ -webkit-appearance: none; /* 针对 Webkit 内核 */border: none;background: none;cursor: pointer;font-size: 150%;font-weight: bold;overflow: visible;opacity: unset;color: var(--secondary);}
+/* 默认显示 + */
+input.span.toggle::before {content: '◐';}
+/* 选中时显示 - */
+input.span.toggle:checked::before {content: '◒';}
+/* 默认隐藏 .content */
+.content { display: none; }
+/* 当 input 被选中时显示 .content */
+input.span.toggle:checked + .content { display: inline; }
