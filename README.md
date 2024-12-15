@@ -6,5 +6,5 @@
 | [docsify](https://github.com/xhsgg12302/archive/tree/docsify)   | https://docs.wtfu.site | https://xhsgg12302.github.io/archive/docsify/#/ |
 
 > [!WARNING]
-> 近期已`hugo`为主进行记录，有部分渲染语法或者样式没有跟进到`docsify`中。
-> <br>建议使用`hugo`预览，`docsify`仅作备份。
+> 近来已`hugo`为主进行记录，有部分渲染语法或者样式没有跟进到`docsify`中。
+> <br>建议使用`hugo`预览，`docsify`仅作备份。子模块：[archive-docs](https://github.com/xhsgg12302/archive-docs)，[archive-assets](https://github.com/xhsgg12302/archive-assets)
