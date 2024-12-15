@@ -1,29 +1,34 @@
 {{$dashedurl := replace .Destination "%20" "-" }}
 {{/*  {{$external := strings.HasPrefix $dashedurl (or "ed2k" "http") }}  */}}
-{{$external := or (hasPrefix $dashedurl "ed2k") (hasPrefix $dashedurl "magnet") (hasPrefix $dashedurl "http") }}
+{{$external := or (hasPrefix $dashedurl "ed2k") (hasPrefix $dashedurl "magnet") (hasPrefix $dashedurl "http") (hasPrefix $dashedurl "mailto") }}
 {{- if $external -}}
-{{/*  https://kb.osr-plastic.org/functions/safehtmlattr/  */}}
-<a {{ printf "href=%q" .Destination | safeHTMLAttr }} rel="noopener" target="_blank">{{ .Text | safeHTML }}</a>
+    {{/*  https://kb.osr-plastic.org/functions/safehtmlattr/  */}}
+    <a {{ printf "href=%q" .Destination | safeHTMLAttr }} rel="noopener" target="_blank">{{ .Text | safeHTML }}</a>
 {{- else -}}
-{{$trimmed := strings.TrimPrefix "/docs" (.Destination | safeURL)}}
-{{$spacedurl := replace $trimmed "README.md" ""  }}
-{{$spacedurl = replace $spacedurl ".md" "/" }}
-{{$relativeUrl := (cond ( and (and (ne .Page.File.TranslationBaseName "README") (hasPrefix $spacedurl ".")) (ge (len $spacedurl) 2) )
-                      ( cond (hasPrefix $spacedurl "./") 
-                          (print "." $spacedurl )
-                          ( cond (hasPrefix $spacedurl "../") 
-                              (print "../" $spacedurl )
-                              $spacedurl
-                          )
-                      )
-                      $spacedurl
-                  ) 
-}}
+    {{/*  兼容 docsify 中的路径  */}}
+    {{$spacedurl := replace (.Destination | safeURL) "README.md" ""  }}
+    {{$spacedurl = replace $spacedurl ".md" "/" }}
 
-{{$fixedUrl := $relativeUrl | urlize}}
-{{/*  {{$nonexistent := eq (.Page.GetPage $spacedurl).RelPermalink ""}}  */}}
-{{$nonexistent := false }}
-{{$rooted := default $fixedUrl ((.Page.GetPage $fixedUrl).RelPermalink) }}
-    {{ if hasPrefix $rooted "/" }}<a {{if not $nonexistent}}href="{{ partialCached "partials/docs/uri" .Page.Site -}}{{$rooted}}" {{end}} rel="noopener" class="internal-link{{if $nonexistent}} broken{{end}}" data-src="{{$rooted}}">{{- .Text | safeHTML -}}</a>
-    {{ else }}<a {{if not $nonexistent}}href="{{$rooted}}" {{end}} rel="noopener" class="internal-link{{if $nonexistent}} broken{{end}}" data-src="{{$rooted}}">{{- .Text | safeHTML -}}</a>{{ end }}
+    {{$relativeUrl := (cond ( and (and (ne .Page.File.TranslationBaseName "README") (hasPrefix $spacedurl ".")) (ge (len $spacedurl) 2) )
+                        ( cond (hasPrefix $spacedurl "./") 
+                            (print "." $spacedurl )
+                            ( cond (hasPrefix $spacedurl "../") 
+                                (print "../" $spacedurl )
+                                $spacedurl
+                            )
+                        )
+                        $spacedurl
+                    ) 
+    }}
+    {{$fixedUrl := $relativeUrl | urlize }}
+    {{/*  
+        fixedUrl 有可能是锚点 或者带锚点的路径
+        broken: 坏链接 class 修饰名
+    */}}
+    {{$rooted := $fixedUrl }}
+    {{ if hasPrefix $rooted "/" }}
+        {{ $rooted = print (partialCached "partials/docs/uri" .Page.Site) $rooted }}
+    {{ end }}
+    {{ warnf "%s ======== %s" .Page.File.Path $rooted }}
+    <a href='{{$rooted}}' rel="noopener" class="internal-link" data-src="{{$rooted}}">{{- .Text | safeHTML -}}</a>
 {{- end -}}
