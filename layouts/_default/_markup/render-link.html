@@ -24,5 +24,6 @@
 {{/*  {{$nonexistent := eq (.Page.GetPage $spacedurl).RelPermalink ""}}  */}}
 {{$nonexistent := false }}
 {{$rooted := default $fixedUrl ((.Page.GetPage $fixedUrl).RelPermalink) }}
-<a {{if not $nonexistent}}href="{{$rooted}}" {{end}} rel="noopener" class="internal-link{{if $nonexistent}} broken{{end}}" data-src="{{$rooted}}">{{- .Text | safeHTML -}}</a>
+    {{ if hasPrefix $rooted "/" }}<a {{if not $nonexistent}}href="{{ partialCached "partials/docs/uri" .Page.Site -}}{{$rooted}}" {{end}} rel="noopener" class="internal-link{{if $nonexistent}} broken{{end}}" data-src="{{$rooted}}">{{- .Text | safeHTML -}}</a>
+    {{ else }}<a {{if not $nonexistent}}href="{{$rooted}}" {{end}} rel="noopener" class="internal-link{{if $nonexistent}} broken{{end}}" data-src="{{$rooted}}">{{- .Text | safeHTML -}}</a>{{ end }}
 {{- end -}}

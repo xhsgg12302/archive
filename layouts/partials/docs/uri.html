@@ -1,0 +1,6 @@
+{{ $result := "" }}
+{{ with .BaseURL }}
+    {{ $uri := replaceRE "^[^/]+//[^/]+" "" . }}
+    {{ $result = substr $uri 0 -1 }}
+{{ end }}
+{{ return $result }}
