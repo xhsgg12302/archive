@@ -9,11 +9,12 @@
 {{- $backToTopJs := resources.Get "dist/vanilla-back-to-top/vanilla-back-to-top.min.js" -}}
 {{- $zoomImageJs := resources.Get "dist/zoom-image/medium-zoom.min.js" -}}
 {{- $prismJs := resources.Get "dist/code-highlight/prism-js/prism.js" -}}
+{{- $prismPluginCodeCollepaseJs := resources.Get "dist/code-highlight/prism-js/plugins/prism-code-collapse.js" -}}
 {{- $copyCodeJs := resources.Get "dist/copy-code/copy-code.js" -}}
 {{- $tabsInitJs := resources.Get "dist/docsify-tabs/tabs-init.js" -}}
 {{- $menuInitJs := resources.Get "dist/menu/menu-init.js" -}}
 {{- $indexjs := resources.Get "dist/index.js" -}}
-{{- $bundle := slice $backToTopJs $zoomImageJs $prismJs $copyCodeJs $tabsInitJs $menuInitJs $indexjs | resources.Concat "dist/index.bundle.js" | resources.Fingerprint "md5" | resources.Minify -}}
+{{- $bundle := slice $backToTopJs $zoomImageJs $prismJs $prismPluginCodeCollepaseJs $copyCodeJs $tabsInitJs $menuInitJs $indexjs | resources.Concat "dist/index.bundle.js" | resources.Fingerprint "md5" | resources.Minify -}}
 <script src="{{$bundle.Permalink}}"></script>
 <script async type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <!-- 

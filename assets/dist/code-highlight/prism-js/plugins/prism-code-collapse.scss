@@ -1,0 +1,50 @@
+.code-toolbar pre {
+    max-height: none; 
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.code-toolbar input[type="checkbox"] {
+    display: none;
+}
+  
+  /* 当复选框被选中时，显示完整代码 */
+.code-toolbar input[type="checkbox"]:checked ~ pre {
+    max-height: none;
+}
+
+/* 参考 CSDN 中代码隐藏样式 如博客中这样： https://blog.csdn.net/qq_69923281/article/details/144492976 */
+label.hide-pre-code-box {
+    width: 100%;
+    padding-top: 85px;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#fff));
+    /* background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0) 0%, #fff 100%); */
+    background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0) 0%, #cdd2b5 100%);
+    position: absolute;
+    margin-top: -100px;
+    z-index: 10;
+    cursor: pointer;
+}
+label.hide-pre-code-box span.hide-pre-code-bt {
+    display: block;
+    margin: auto;
+    width: 44px;
+    height: 16px;
+    background: #f0f0f5;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    /*  padding-top: 6px;  */
+    text-align: center;
+}
+label.hide-pre-code-box span.hide-pre-code-bt::after {
+    content: '⬇';
+    font-size: 80%;
+}
+.code-toolbar input[type="checkbox"]:checked ~ label.hide-pre-code-box span.hide-pre-code-bt::after {
+    content: '⬆';
+    font-size: 80%;
+}
+.code-toolbar input[type="checkbox"]:checked ~ label.hide-pre-code-box {
+    padding-top: 6px; /* 修改你想要的属性 */
+    margin-top: -23px;
+}

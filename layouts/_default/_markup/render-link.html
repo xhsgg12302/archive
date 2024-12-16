@@ -29,6 +29,6 @@
     {{ if hasPrefix $rooted "/" }}
         {{ $rooted = print (partialCached "partials/docs/uri" .Page.Site) $rooted }}
     {{ end }}
-    {{ warnf "%s ======== %s" .Page.File.Path $rooted }}
+    {{/*  {{ warnf "%s ======== %s" .Page.File.Path $rooted }}  */}}
     <a href='{{$rooted}}' rel="noopener" class="internal-link" data-src="{{$rooted}}">{{- .Text | safeHTML -}}</a>
 {{- end -}}

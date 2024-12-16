@@ -22,7 +22,7 @@ pre {
     /* background-color: #f8f8f8; */
 }
 
-/* 显示语言 */
+/* 默认显示语言 */
 .markdown output:after,.markdown pre:after {
     color: #ccc;
     font-size: .8rem;
@@ -34,7 +34,11 @@ pre {
     right: 0;
     text-align: right;
     top: 0;
-    content: attr(data-lang)
+    content: attr(data-lang);
+}
+/* 存在 data-file 显示文件名 */
+.markdown output:after,.markdown pre[data-file]:after {
+    content: attr(data-file);
 }
 
 .line-numbers .line-numbers-rows {
@@ -42,9 +46,9 @@ pre {
     // 行数上边距
     //margin-top: 2px;
 }
-pre[class*=language-].line-numbers {
-    position: static;
-}
+// pre[class*=language-].line-numbers {
+//     position: static;
+// }
 .token.operator{
     background: none;
 }
