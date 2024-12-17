@@ -1,6 +1,6 @@
 .code-toolbar pre {
-    max-height: none; 
-    overflow: hidden;
+    max-height: attr(data-cc); 
+    // overflow: hidden;
     transition: max-height 0.3s ease-out;
 }
 
@@ -13,7 +13,7 @@
     max-height: none;
 }
 
-/* 参考 CSDN 中代码隐藏样式 如博客中这样： https://blog.csdn.net/qq_69923281/article/details/144492976 */
+/* 参考 CSDN 中代码隐藏样式 如博客中这样： https://blog.csdn.net/XHS_12302/article/details/53899852 */
 label.hide-pre-code-box {
     width: 100%;
     padding-top: 85px;
