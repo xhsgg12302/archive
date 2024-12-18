@@ -28,7 +28,7 @@
 		}
 
         pre.style.maxHeight = pre.getAttribute('data-cc');
-        pre.style.overflowX = 'auto';pre.style.overflowY = 'hidden';
+        //pre.style.overflowX = 'auto';pre.style.overflowY = 'hidden';
         let ccIndex = Prism.plugins.codeCollapse.counter();
         pre.insertAdjacentHTML('beforebegin', '<input type="checkbox" id="toggle-cc-' + ccIndex + '"/>');
         pre.insertAdjacentHTML('afterend', '<label for="toggle-cc-' + ccIndex + '" class="hide-pre-code-box"><span class="hide-pre-code-bt"/></label>');
@@ -39,11 +39,11 @@
             if (this.checked) {
                 // 如果复选框被选中，则应用样式（这里假设你有一个默认样式类）
                 pre.style.maxHeight = 'none';
-                pre.style.overflowX = 'auto';pre.style.overflowY = 'auto';
+                //pre.style.overflowX = 'auto';pre.style.overflowY = 'auto';
             } else {
                 // 如果复选框未被选中，则移除样式
                 pre.style.maxHeight = pre.getAttribute('data-cc');
-                pre.style.overflowX = 'auto';pre.style.overflowY = 'hidden';
+                //pre.style.overflowX = 'auto';pre.style.overflowY = 'hidden';
             }
         });
 	};

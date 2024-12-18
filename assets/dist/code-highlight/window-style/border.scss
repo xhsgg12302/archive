@@ -5,6 +5,7 @@
 .outer {
     background: #b4b4b4;
     opacity: 0.9;
+    position: relative;
     /* width: 960px; */
     /* margin: 10px auto; */
     padding: 7px;
@@ -50,4 +51,34 @@
         background: #27C93F;
         border: 1px solid #1DAD2B;
     }
+}
+
+div.out-show-container {
+    position: relative;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    // left: 80%;
+    background: #f9f9f9;
+    border-radius: 50%;
+    margin: 0 4px 0 0 
+}
+
+/* 默认显示语言 */
+div.outer.yosemite div.out-show-container:after {
+    color: #ccc;
+    font-size: .9rem;
+    font-weight: 600;
+    height: 15px;
+    line-height: 15px;
+    padding: 5px 10px 0;
+    position: relative;
+    right: 0;
+    text-align: right;
+    top: 0;
+    content: attr(data-lang);
+}
+/* 存在 data-file 显示文件名 */
+div.outer.yosemite div.out-show-container[data-file]:after {
+    content: attr(data-file);
 }
