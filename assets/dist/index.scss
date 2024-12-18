@@ -14,6 +14,8 @@
 @import "./copy-code/copy-code";
 @import "./code-highlight/adjust";
 
+// ext-footer
+@import "./ext-footer/github-badge";
 
 //=============================================
 .hr-division-line:after {
@@ -70,6 +72,7 @@ details[open] summary {
 .search-hotkey-combination {
     display: inline-flex;
     padding-right: 2px;
+    margin-left: 62px;
 }
 
 .search-hotkey {
@@ -93,6 +96,28 @@ details[open] summary {
 .search-hotkey:active {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     transform: translateY(1px);
+}
+
+.github-corner {
+    border-bottom: 0;
+    position: fixed;
+    height: 50px;
+    width: 50px;
+    right: 0;
+    text-decoration: none;
+    top: 0;
+    z-index: 1;
+}
+.github-corner:hover .octo-arm {
+    -webkit-animation: octocat-wave .56s ease-in-out;
+    animation: octocat-wave .56s ease-in-out
+}
+.github-corner svg {
+    color: #fff;
+    fill: var(--theme-color,#6e2aa1);
+    margin: 0;
+    width: inherit;
+    height: inherit;
 }
 
 .book-menu-content nav {

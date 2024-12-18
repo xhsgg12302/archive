@@ -47,7 +47,7 @@ menu:
   #   - name: "Sample"
   #     url: "https://google.com"
   #     weight: 10
-  after:
+  after_bak:
     - name: LINKS
       weight: 10
     - name: HUGOIO
