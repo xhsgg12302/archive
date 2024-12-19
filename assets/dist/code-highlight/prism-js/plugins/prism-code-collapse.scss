@@ -1,5 +1,5 @@
 .code-toolbar pre {
-    max-height: attr(data-cc); 
+    // max-height: attr(data-cc); 
     // overflow: hidden;
     transition: max-height 0.3s ease-out;
 }
@@ -8,10 +8,10 @@
     display: none;
 }
   
-  /* 当复选框被选中时，显示完整代码 */
-.code-toolbar input[type="checkbox"]:checked ~ pre {
-    max-height: none;
-}
+/* 当复选框被选中时，显示完整代码 */
+// .code-toolbar input[type="checkbox"]:checked ~ pre {
+//     max-height: none;
+// }
 
 /* 参考 CSDN 中代码隐藏样式 如博客中这样： https://blog.csdn.net/XHS_12302/article/details/53899852 */
 label.hide-pre-code-box {

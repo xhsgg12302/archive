@@ -62,8 +62,16 @@
     background-color: #FFC0CB !important;
 }
 
+.github-badge .bg-light-purple {
+    background-color: #b391c1 !important;
+}
+
 .github-badge .bg-red {
     background-color: #e05d44 !important;
+}
+
+.github-badge .bg-claret-red {
+    background-color: #a17c7c !important;
 }
 
 .github-badge .bg-blue {

@@ -27,7 +27,7 @@
 			return;
 		}
 
-        pre.style.maxHeight = pre.getAttribute('data-cc');
+        //pre.style.maxHeight = pre.getAttribute('data-cc');
         //pre.style.overflowX = 'auto';pre.style.overflowY = 'hidden';
         let ccIndex = Prism.plugins.codeCollapse.counter();
         pre.insertAdjacentHTML('beforebegin', '<input type="checkbox" id="toggle-cc-' + ccIndex + '"/>');
