@@ -35,15 +35,16 @@
 
         var eleInput = document.querySelector('input#toggle-cc-'+ ccIndex);
         eleInput.addEventListener('change', function() {
-            const lineHighlights = pre.querySelectorAll('div.line-highlight');
             if (this.checked) {
                 // 如果复选框被选中，则应用样式（这里假设你有一个默认样式类）
+                pre.setAttribute('last-scroll-pos', window.scrollY);
                 pre.style.maxHeight = 'none';
                 //pre.style.overflowX = 'auto';pre.style.overflowY = 'auto';
             } else {
                 // 如果复选框未被选中，则移除样式
                 pre.style.maxHeight = pre.getAttribute('data-cc');
                 //pre.style.overflowX = 'auto';pre.style.overflowY = 'hidden';
+                window.scroll(0, pre.getAttribute('last-scroll-pos'),'smooth');
             }
         });
 	};
