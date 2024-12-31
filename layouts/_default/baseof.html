@@ -9,9 +9,7 @@
   <input type="checkbox" class="hidden toggle" id="menu-control" />
   <main class="flex">
     <aside class="book-menu">
-      <div class="book-menu-content">
-        {{ partial "docs/menu/menu" . }}
-      </div>
+      {{ template "menuContent" . }}
     </aside>
     <div class="book-page container">
       {{ template "main" . }} <!-- Page Content -->
@@ -30,3 +28,9 @@
   {{ partial "docs/inject/body" . }}
 </body>
 </html>
+
+{{ define "menuContent" }}
+  <div class="book-menu-content">
+    {{ partial "docs/menu/menu" . }}
+  </div>
+{{ end }}

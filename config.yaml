@@ -59,6 +59,17 @@ menu:
       weight: 30
       parent: LINKS
 
+taxonomies:
+  category: categories
+  tag: tags
+  timeline: timeline
+
+services:
+  disqus:
+    shortname: archive-5
+  googleAnalytics:
+    id: G-E9B9ZHWYYR
+
 params:
 
   name: xhsgg12302
@@ -176,9 +187,3 @@ params:
   BookSearch: false
   BookServiceWorker: false
   BookPortableLinks: false
-
-services:
-  disqus:
-    shortname: archive-5
-  googleAnalytics:
-    id: G-E9B9ZHWYYR

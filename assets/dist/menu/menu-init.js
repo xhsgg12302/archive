@@ -2,6 +2,7 @@
 
 (function () {
     function expandParents(element) {
+        if (!element) return;
         var parentLi = element.closest('ul').closest('li');
         while (parentLi && parentLi.closest('nav')) {
             parentLi.querySelector('input').checked = true;
@@ -41,6 +42,7 @@
     const target = route.pathname;
     if (target === '/') return;
     const mainUL = document.querySelector("aside .book-menu-content nav>ul");
+    if (mainUL == null) return;
     const sel = 'a[href="' + target + '"]';
     const targetA = mainUL.querySelector(sel);
     expandParents(targetA);
