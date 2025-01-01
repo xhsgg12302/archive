@@ -139,7 +139,7 @@ var buildTOC = function(options) {
 function viewDoc(event, vm) {
   var docName = vm.route.file
   if (docName) {
-    var viewLink = 'https://github.com/xhsgg12302/knownledges/blob/master/' + docName
+    var viewLink = 'https://github.com/xhsgg12302/archive-docs/blob/master/' + docName.slice(5)
     window.open(viewLink)
     event.preventDefault()
     return false
