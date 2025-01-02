@@ -7,7 +7,7 @@
   {{ hugo.GeneratorBuildInfo }}
   <meta name="keywords" content="{{range .Site.Taxonomies.tags.ByCount }}{{ printf "%s," .Name }}{{end}}">
   {{/*  https://developers.google.com/search/blog/2019/03/help-google-search-know-best-date-for?hl=zh-cn  */ -}}
-  <script type="application/ld+json">{ "@type": "Article", "datePublished": {{- .GitInfo.MergeCreateDate | time.Format "2006-01-02T15:04:05+08:00" -}},"dateModified": {{- .GitInfo.MergeUpdateDate | time.Format "2006-01-02T15:04:05+08:00" -}} }</script>
+  <script type="application/ld+json">{ "@context": "https://schema.org","@type": "Article", "headline": {{ partial "docs/title.html" . }}, "datePublished": {{- .GitInfo.MergeCreateDate | time.Format "2006-01-02T15:04:05+08:00" -}},"dateModified": {{- .GitInfo.MergeUpdateDate | time.Format "2006-01-02T15:04:05+08:00" -}}, "author": {"@type": "Person","name": "12302" }}</script>
 {{- with or .Description .Summary site.Params.description | plainify | htmlUnescape | truncate 1000 }}
   <meta name="description" content="{{ trim . "\n\r\t " }}">
 {{- end }}
