@@ -1,9 +1,9 @@
-{{/*  
+{{- /*  
     override /themes/amethyst
-*/}}
-{{$css := slice }}
+*/ -}}
+{{$css := slice -}}
 {{- $indexCss := resources.Get "dist/index.scss" | css.Sass (dict "outputStyle" "compressed") -}}
 
-{{$css = $css | append $indexCss }}
-{{$finalCss := $css | resources.Concat "dist/index.bundle.css" | resources.Fingerprint "md5" | resources.Minify  }}
-<link href="{{$finalCss.Permalink}}" rel="stylesheet" />
+{{ $css = $css | append $indexCss -}}
+{{$finalCss := $css | resources.Concat "dist/index.bundle.css" | resources.Fingerprint "md5" | resources.Minify  -}}
+    <link rel="stylesheet" href="{{$finalCss.Permalink}}" />
