@@ -16,8 +16,8 @@
   {{ $manifest := resources.Get "manifest/manifest.json" | resources.ExecuteAsTemplate "manifest/manifest.json" . -}}
   <link rel="manifest" href="{{ $manifest.RelPermalink }}">
   <link rel="icon" href="{{ ".images/_media/favicon-tech.ico" | relURL }}" type="image/x-icon">
-  <link rel="preload" href="/fonts/zYX9KVElMYYaJe8bpLHnCwDKjQ76AIFsdP3pBms.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/zYXgKVElMYYaJe8bpLHnCwDKhdHeFaxOedc.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://static.wtfu.site/fonts/fonts/zYX9KVElMYYaJe8bpLHnCwDKjQ76AIFsdP3pBms.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://static.wtfu.site/fonts/fonts/zYXgKVElMYYaJe8bpLHnCwDKhdHeFaxOedc.woff2" as="font" type="font/woff2" crossorigin>
 
 {{ partial "_internal/opengraph.html" . }}
 {{ partialCached "_internal/google_analytics.html" . }}
