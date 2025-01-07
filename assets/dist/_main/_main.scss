@@ -48,7 +48,7 @@ aside nav ul {
   list-style: none;
 
   li {
-    margin: 1em 0;
+    margin: 0.8em 0;
     position: relative;
   }
 
@@ -260,7 +260,8 @@ body[dir="rtl"] .book-menu {
 }
 
 .book-comments {
-  margin-top: $padding-16;
+  width: 85%;
+  margin: 1rem auto;
 }
 
 .book-languages {

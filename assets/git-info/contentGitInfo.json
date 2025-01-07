@@ -5,7 +5,7 @@
     "subject": "first commit",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-11-10T21:09:57+08:00",
+    "authorDate": "2024-12-27T02:11:13+08:00",
     "commitDate": "2022-05-23T16:38:46+08:00",
     "createDate": "2022-05-23T16:38:46+08:00",
     "body": ""
@@ -71,7 +71,7 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-11-10T21:09:57+08:00",
+    "authorDate": "2024-11-21T13:05:53+08:00",
     "commitDate": "2024-01-07T11:54:03+08:00",
     "createDate": "2024-01-07T11:54:03+08:00",
     "body": ""
@@ -93,7 +93,7 @@
     "subject": "update something",
     "authorName": "wangtangfu",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2023-11-23T11:16:17+08:00",
+    "authorDate": "2024-11-21T13:05:53+08:00",
     "commitDate": "2023-11-21T17:56:36+08:00",
     "createDate": "2023-11-21T17:56:36+08:00",
     "body": ""
@@ -104,7 +104,7 @@
     "subject": "update something",
     "authorName": "wangtangfu",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2023-11-23T11:16:17+08:00",
+    "authorDate": "2024-11-21T13:05:53+08:00",
     "commitDate": "2023-11-23T11:10:55+08:00",
     "createDate": "2023-11-23T11:10:55+08:00",
     "body": ""
@@ -115,7 +115,7 @@
     "subject": "update something",
     "authorName": "wangtangfu",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2023-11-23T11:16:17+08:00",
+    "authorDate": "2024-11-21T13:05:53+08:00",
     "commitDate": "2023-11-22T10:56:30+08:00",
     "createDate": "2023-11-22T10:56:30+08:00",
     "body": ""
@@ -137,7 +137,7 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-08-21T17:23:50+08:00",
+    "authorDate": "2024-11-23T09:28:34+08:00",
     "commitDate": "2024-02-22T16:43:43+08:00",
     "createDate": "2024-02-22T16:43:43+08:00",
     "body": ""
@@ -192,10 +192,10 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-10-23T18:17:38+08:00",
+    "authorDate": "2024-12-05T03:11:25+08:00",
     "commitDate": "2024-10-23T18:17:38+08:00",
     "createDate": "2024-10-23T18:17:38+08:00",
-    "body": "No update"
+    "body": ""
   },
   "corner/encoding/varint.md": {
     "hash": "1eecea240bced6af805de1b2402ea2f253882d54",
@@ -203,10 +203,10 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-10-23T18:17:38+08:00",
+    "authorDate": "2024-12-15T08:27:49+08:00",
     "commitDate": "2024-10-23T18:17:38+08:00",
     "createDate": "2024-10-23T18:17:38+08:00",
-    "body": "No update"
+    "body": ""
   },
   "corner/encoding/zigzag.md": {
     "hash": "1eecea240bced6af805de1b2402ea2f253882d54",
@@ -214,10 +214,10 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-10-23T18:17:38+08:00",
+    "authorDate": "2024-12-09T02:21:21+08:00",
     "commitDate": "2024-10-23T18:17:38+08:00",
     "createDate": "2024-10-23T18:17:38+08:00",
-    "body": "No update"
+    "body": ""
   },
   "corner/numeration/README.md": {
     "hash": "1eecea240bced6af805de1b2402ea2f253882d54",
@@ -225,10 +225,10 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-10-23T18:17:38+08:00",
+    "authorDate": "2024-12-05T03:11:25+08:00",
     "commitDate": "2024-10-23T18:17:38+08:00",
     "createDate": "2024-10-23T18:17:38+08:00",
-    "body": "No update"
+    "body": ""
   },
   "corner/numeration/complement.md": {
     "hash": "1eecea240bced6af805de1b2402ea2f253882d54",
@@ -258,7 +258,7 @@
     "subject": "adjustment of structure",
     "authorName": "wangtangfu",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2023-12-08T14:45:40+08:00",
+    "authorDate": "2024-11-28T19:52:47+08:00",
     "commitDate": "2023-03-09T11:02:00+08:00",
     "createDate": "2023-03-09T11:02:00+08:00",
     "body": ""
@@ -291,7 +291,7 @@
     "subject": "update something",
     "authorName": "wangtangfu",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-08-19T14:36:20+08:00",
+    "authorDate": "2024-11-23T09:28:34+08:00",
     "commitDate": "2023-12-08T14:45:40+08:00",
     "createDate": "2023-12-08T14:45:40+08:00",
     "body": ""
@@ -324,7 +324,7 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-06-04T13:23:39+08:00",
+    "authorDate": "2025-01-01T15:20:11+08:00",
     "commitDate": "2024-01-22T04:55:38+08:00",
     "createDate": "2024-01-22T04:55:38+08:00",
     "body": ""
@@ -346,7 +346,7 @@
     "subject": "some update",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-11-09T05:19:09+08:00",
+    "authorDate": "2024-12-16T04:37:42+08:00",
     "commitDate": "2022-08-19T16:45:14+08:00",
     "createDate": "2022-08-19T16:45:14+08:00",
     "body": ""
@@ -357,7 +357,7 @@
     "subject": "add docker usage",
     "authorName": "12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-09-30T07:48:46+08:00",
+    "authorDate": "2024-12-16T04:37:42+08:00",
     "commitDate": "2022-08-04T12:29:15+08:00",
     "createDate": "2022-08-04T12:29:15+08:00",
     "body": ""
@@ -368,7 +368,7 @@
     "subject": "improve",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-11-04T18:43:05+08:00",
+    "authorDate": "2025-01-02T22:43:27+08:00",
     "commitDate": "2022-10-14T14:22:59+08:00",
     "createDate": "2022-10-14T14:22:59+08:00",
     "body": ""
@@ -379,7 +379,7 @@
     "subject": "adjustment of structure",
     "authorName": "wangtangfu",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-06-04T12:13:12+08:00",
+    "authorDate": "2024-11-28T19:52:47+08:00",
     "commitDate": "2023-03-09T11:02:00+08:00",
     "createDate": "2023-03-09T11:02:00+08:00",
     "body": ""
@@ -434,7 +434,7 @@
     "subject": "update something",
     "authorName": "wangtangfu",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2023-12-07T14:15:50+08:00",
+    "authorDate": "2024-11-28T19:52:47+08:00",
     "commitDate": "2023-12-05T16:30:49+08:00",
     "createDate": "2023-12-05T16:30:49+08:00",
     "body": ""
@@ -445,10 +445,10 @@
     "subject": "update something",
     "authorName": "wangtangfu",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2023-12-06T11:54:39+08:00",
+    "authorDate": "2024-12-14T12:00:19+08:00",
     "commitDate": "2023-12-06T11:54:39+08:00",
     "createDate": "2023-12-06T11:54:39+08:00",
-    "body": "No update"
+    "body": ""
   },
   "devops/network/dns.md": {
     "hash": "97d57c6a1cb6524f98f2a48a50b489fdf729a67e",
@@ -511,7 +511,7 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-10-19T16:28:25+08:00",
+    "authorDate": "2024-12-16T04:37:42+08:00",
     "commitDate": "2024-08-13T20:58:24+08:00",
     "createDate": "2024-08-13T20:58:24+08:00",
     "body": ""
@@ -536,6 +536,39 @@
     "authorDate": "2024-06-04T13:23:39+08:00",
     "commitDate": "2023-12-05T16:30:49+08:00",
     "createDate": "2023-12-05T16:30:49+08:00",
+    "body": ""
+  },
+  "devops/network/tls-ssl/README.md": {
+    "hash": "4bc4cb41f2f768ce80f74152fcfabcd6ca5c4dc0",
+    "abbreviatedHash": "4bc4cb4",
+    "subject": "update something",
+    "authorName": "XHS-12302",
+    "authorEmail": "xhsgg12302@gmail.com",
+    "authorDate": "2025-01-05T01:53:21+08:00",
+    "commitDate": "2024-12-14T12:00:19+08:00",
+    "createDate": "2024-12-14T12:00:19+08:00",
+    "body": ""
+  },
+  "devops/network/tls-ssl/tls-record-console-output.2ed.md": {
+    "hash": "910e0cc238834d8eda7423eab460a507184291cb",
+    "abbreviatedHash": "910e0cc",
+    "subject": "update something",
+    "authorName": "XHS-12302",
+    "authorEmail": "xhsgg12302@gmail.com",
+    "authorDate": "2024-12-30T18:54:45+08:00",
+    "commitDate": "2024-12-20T03:21:03+08:00",
+    "createDate": "2024-12-20T03:21:03+08:00",
+    "body": ""
+  },
+  "devops/network/tls-ssl/tls-record-console-output.md": {
+    "hash": "910e0cc238834d8eda7423eab460a507184291cb",
+    "abbreviatedHash": "910e0cc",
+    "subject": "update something",
+    "authorName": "XHS-12302",
+    "authorEmail": "xhsgg12302@gmail.com",
+    "authorDate": "2024-12-30T12:08:38+08:00",
+    "commitDate": "2024-12-20T03:21:03+08:00",
+    "createDate": "2024-12-20T03:21:03+08:00",
     "body": ""
   },
   "devops/network/tun-tap.md": {
@@ -566,7 +599,7 @@
     "subject": "add nginx module",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-11-11T16:09:33+08:00",
+    "authorDate": "2024-12-22T13:45:48+08:00",
     "commitDate": "2022-08-08T14:57:43+08:00",
     "createDate": "2022-08-08T14:57:43+08:00",
     "body": ""
@@ -577,7 +610,7 @@
     "subject": "improve",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-10-14T10:31:23+08:00",
+    "authorDate": "2024-11-28T19:52:47+08:00",
     "commitDate": "2022-10-24T03:39:34+08:00",
     "createDate": "2022-10-24T03:39:34+08:00",
     "body": ""
@@ -610,7 +643,7 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-10-15T10:56:44+08:00",
+    "authorDate": "2024-12-18T09:44:14+08:00",
     "commitDate": "2024-10-14T10:31:23+08:00",
     "createDate": "2024-10-14T10:31:23+08:00",
     "body": ""
@@ -720,10 +753,21 @@
     "subject": "add launchctl script",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-11-04T18:43:05+08:00",
+    "authorDate": "2025-01-01T15:20:11+08:00",
     "commitDate": "2023-05-16T00:28:17+08:00",
     "createDate": "2023-05-16T00:27:21+08:00",
     "body": ""
+  },
+  "devops/os/mac/middle-click.md": {
+    "hash": "fad7fa7281803361ed90244ca403faf31c9775f6",
+    "abbreviatedHash": "fad7fa7",
+    "subject": "update something",
+    "authorName": "XHS-12302",
+    "authorEmail": "xhsgg12302@gmail.com",
+    "authorDate": "2024-12-23T04:27:49+08:00",
+    "commitDate": "2024-12-23T04:27:49+08:00",
+    "createDate": "2024-12-23T04:27:49+08:00",
+    "body": "No update"
   },
   "devops/os/mac/parallels-desktop.md": {
     "hash": "67b92aaf44cc897a84bdbc6e66feedff07a74c1e",
@@ -819,7 +863,7 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-11-08T17:34:21+08:00",
+    "authorDate": "2024-12-16T04:37:42+08:00",
     "commitDate": "2023-07-24T23:21:26+08:00",
     "createDate": "2023-07-24T23:21:26+08:00",
     "body": ""
@@ -852,7 +896,7 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-11-08T04:23:03+08:00",
+    "authorDate": "2024-12-14T12:00:19+08:00",
     "commitDate": "2023-07-02T20:58:51+08:00",
     "createDate": "2023-07-02T20:58:51+08:00",
     "body": ""
@@ -1017,7 +1061,7 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-09-26T06:34:23+08:00",
+    "authorDate": "2025-01-02T23:14:54+08:00",
     "commitDate": "2023-07-02T21:15:34+08:00",
     "createDate": "2023-07-02T21:15:34+08:00",
     "body": ""
@@ -1072,7 +1116,7 @@
     "subject": "update something",
     "authorName": "wangtangfu",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-06-04T12:13:12+08:00",
+    "authorDate": "2025-01-01T15:20:11+08:00",
     "commitDate": "2023-06-19T11:17:40+08:00",
     "createDate": "2023-06-19T11:17:40+08:00",
     "body": ""
@@ -1083,7 +1127,7 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-09-30T07:48:46+08:00",
+    "authorDate": "2024-12-16T04:37:42+08:00",
     "commitDate": "2024-03-27T05:09:13+08:00",
     "createDate": "2024-03-27T05:09:13+08:00",
     "body": ""
@@ -1116,7 +1160,7 @@
     "subject": "adjustment of structure",
     "authorName": "wangtangfu",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-11-10T21:09:57+08:00",
+    "authorDate": "2025-01-05T01:53:21+08:00",
     "commitDate": "2023-03-09T11:02:00+08:00",
     "createDate": "2023-03-09T11:02:00+08:00",
     "body": ""
@@ -1292,7 +1336,7 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-08-21T17:23:50+08:00",
+    "authorDate": "2024-12-03T20:54:23+08:00",
     "commitDate": "2023-12-26T04:50:37+08:00",
     "createDate": "2023-12-26T04:50:37+08:00",
     "body": ""
@@ -1314,7 +1358,7 @@
     "subject": "update something",
     "authorName": "wangtangfu",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-06-04T12:56:59+08:00",
+    "authorDate": "2024-12-03T20:54:23+08:00",
     "commitDate": "2023-12-14T20:17:39+08:00",
     "createDate": "2023-12-14T20:17:39+08:00",
     "body": ""
@@ -1336,7 +1380,7 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-09-06T18:49:57+08:00",
+    "authorDate": "2024-12-16T04:37:42+08:00",
     "commitDate": "2024-03-28T01:39:41+08:00",
     "createDate": "2024-03-28T01:39:41+08:00",
     "body": ""
@@ -1391,10 +1435,10 @@
     "subject": "update something",
     "authorName": "wangtangfu",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2023-11-20T12:50:56+08:00",
+    "authorDate": "2024-11-21T13:05:53+08:00",
     "commitDate": "2023-11-20T12:50:56+08:00",
     "createDate": "2023-11-20T12:50:56+08:00",
-    "body": "No update"
+    "body": ""
   },
   "doc/advance/native/jna.md": {
     "hash": "0a7136e090dc287006d950f816e9c722384cd7dd",
@@ -1402,7 +1446,7 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-06-04T12:56:59+08:00",
+    "authorDate": "2024-11-21T13:05:53+08:00",
     "commitDate": "2023-11-19T23:41:05+08:00",
     "createDate": "2023-11-19T23:41:05+08:00",
     "body": ""
@@ -1413,7 +1457,7 @@
     "subject": "update something",
     "authorName": "wangtangfu",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-06-21T17:21:40+08:00",
+    "authorDate": "2024-11-21T13:05:53+08:00",
     "commitDate": "2023-11-17T19:12:57+08:00",
     "createDate": "2023-11-17T19:12:57+08:00",
     "body": ""
@@ -1424,7 +1468,7 @@
     "subject": "improve",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-03-03T04:09:14+08:00",
+    "authorDate": "2024-11-21T13:05:53+08:00",
     "commitDate": "2022-10-14T14:22:59+08:00",
     "createDate": "2022-10-14T14:22:59+08:00",
     "body": ""
@@ -1462,6 +1506,17 @@
     "createDate": "2024-05-01T16:49:40+08:00",
     "body": ""
   },
+  "doc/base/IO/NIO/zero-copy.md": {
+    "hash": "3132b4cd6080bc997547d1cdb615188e74ca58fe",
+    "abbreviatedHash": "3132b4c",
+    "subject": "update something",
+    "authorName": "XHS-12302",
+    "authorEmail": "xhsgg12302@gmail.com",
+    "authorDate": "2024-12-02T18:08:41+08:00",
+    "commitDate": "2024-12-02T18:08:41+08:00",
+    "createDate": "2024-12-02T18:08:41+08:00",
+    "body": "No update"
+  },
   "doc/base/IO/README.md": {
     "hash": "eac2c8c8849a7097e9f28be2251623f0783f7e44",
     "abbreviatedHash": "eac2c8c",
@@ -1479,7 +1534,7 @@
     "subject": "improve",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-09-24T15:59:00+08:00",
+    "authorDate": "2024-12-08T21:11:30+08:00",
     "commitDate": "2022-10-14T14:22:59+08:00",
     "createDate": "2022-10-14T14:22:59+08:00",
     "body": ""
@@ -1523,7 +1578,7 @@
     "subject": "adjust something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2023-11-24T19:08:31+08:00",
+    "authorDate": "2024-11-21T13:05:53+08:00",
     "commitDate": "2022-08-06T01:25:28+08:00",
     "createDate": "2022-08-06T01:25:28+08:00",
     "body": ""
@@ -1545,7 +1600,7 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-08-21T01:09:45+08:00",
+    "authorDate": "2024-12-08T21:11:30+08:00",
     "commitDate": "2024-08-04T17:17:10+08:00",
     "createDate": "2024-08-04T17:17:10+08:00",
     "body": ""
@@ -1765,7 +1820,7 @@
     "subject": "improve",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-06-04T13:23:39+08:00",
+    "authorDate": "2024-12-14T12:00:19+08:00",
     "commitDate": "2022-10-22T17:32:46+08:00",
     "createDate": "2022-10-22T17:32:46+08:00",
     "body": ""
@@ -1787,7 +1842,7 @@
     "subject": "improve",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2023-11-27T16:46:32+08:00",
+    "authorDate": "2024-12-14T12:00:19+08:00",
     "commitDate": "2022-11-12T18:48:26+08:00",
     "createDate": "2022-11-12T18:48:26+08:00",
     "body": ""
@@ -1831,7 +1886,7 @@
     "subject": "update something",
     "authorName": "wangtangfu",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-06-04T13:23:39+08:00",
+    "authorDate": "2024-12-16T04:37:42+08:00",
     "commitDate": "2023-11-28T11:40:03+08:00",
     "createDate": "2023-11-28T11:40:03+08:00",
     "body": ""
@@ -1842,7 +1897,7 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-06-08T08:57:46+08:00",
+    "authorDate": "2024-12-09T02:21:21+08:00",
     "commitDate": "2024-01-09T17:33:02+08:00",
     "createDate": "2024-01-09T17:33:02+08:00",
     "body": ""
@@ -1919,7 +1974,7 @@
     "subject": "improve",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-06-04T12:56:59+08:00",
+    "authorDate": "2024-11-28T10:41:03+08:00",
     "commitDate": "2022-11-08T18:37:40+08:00",
     "createDate": "2022-11-08T18:37:40+08:00",
     "body": ""
@@ -2139,10 +2194,10 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-05-11T03:55:27+08:00",
+    "authorDate": "2025-01-01T15:20:11+08:00",
     "commitDate": "2024-05-11T03:55:27+08:00",
     "createDate": "2024-05-11T03:55:27+08:00",
-    "body": "No update"
+    "body": ""
   },
   "doc/framework/redis/redis.md": {
     "hash": "be5d69f4b4a2abf9d41eb48b39765f50d9fa670e",
@@ -2480,10 +2535,10 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-05-11T03:55:27+08:00",
+    "authorDate": "2024-12-10T17:50:50+08:00",
     "commitDate": "2024-05-11T03:55:27+08:00",
     "createDate": "2024-05-11T03:55:27+08:00",
-    "body": "No update"
+    "body": ""
   },
   "doc/framework/zookeeper/zk.md": {
     "hash": "251084915aec72472dfb3541b287ede81854a64a",
@@ -2535,7 +2590,7 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-10-18T14:35:20+08:00",
+    "authorDate": "2024-12-22T15:24:59+08:00",
     "commitDate": "2024-09-26T18:54:33+08:00",
     "createDate": "2024-09-26T18:54:33+08:00",
     "body": ""
@@ -2546,10 +2601,21 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-09-24T19:58:40+08:00",
+    "authorDate": "2024-12-16T04:37:42+08:00",
     "commitDate": "2024-09-20T21:39:58+08:00",
     "createDate": "2024-09-20T21:39:58+08:00",
     "body": ""
+  },
+  "other/misc/unblock-netease-music.md": {
+    "hash": "752bbcf5dc211d00fa6b03fb09018aef2e865e1e",
+    "abbreviatedHash": "752bbcf",
+    "subject": "update something",
+    "authorName": "XHS-12302",
+    "authorEmail": "xhsgg12302@gmail.com",
+    "authorDate": "2025-01-05T01:53:21+08:00",
+    "commitDate": "2025-01-05T01:53:21+08:00",
+    "createDate": "2025-01-05T01:53:21+08:00",
+    "body": "No update"
   },
   "other/misc/vps/README.md": {
     "hash": "de996d1be56a79249196a6a1334d5c9cb5ef2fdc",
@@ -2557,10 +2623,10 @@
     "subject": "update something",
     "authorName": "XHS-12302",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-09-24T15:59:00+08:00",
+    "authorDate": "2024-12-16T04:37:42+08:00",
     "commitDate": "2024-09-24T15:59:00+08:00",
     "createDate": "2024-09-24T15:59:00+08:00",
-    "body": "No update"
+    "body": ""
   },
   "other/review/README.md": {
     "hash": "afc7b7d30c20d71aafa8a91bef636cb66f03a91e",
@@ -2601,7 +2667,7 @@
     "subject": "adjustment of structure",
     "authorName": "wangtangfu",
     "authorEmail": "xhsgg12302@gmail.com",
-    "authorDate": "2024-08-15T10:28:35+08:00",
+    "authorDate": "2025-01-05T01:53:21+08:00",
     "commitDate": "2023-03-09T11:02:00+08:00",
     "createDate": "2023-03-09T11:02:00+08:00",
     "body": ""

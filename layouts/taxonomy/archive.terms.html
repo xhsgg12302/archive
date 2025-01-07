@@ -1,0 +1,61 @@
+{{- /*  
+    copy code form `timeline.terms.html`，for compatible `/archives` url。
+*/ -}}
+{{ define "main" }}
+    {{- $timelineCss := resources.Get "dist/timeline/timeline.scss" | css.Sass (dict "outputStyle" "compressed") -}}
+    {{$finalCss := $timelineCss | resources.Fingerprint "md5" | resources.Minify  }}
+    <link href="{{$finalCss.Permalink}}" rel="stylesheet" />
+
+    <article class="timeline markdown">
+        <h1 class="title" style="text-align: center;">{{ partial "docs/title.html" . }}</h1>
+    
+        <div id="article-container">
+            {{ $pages := where (where .Site.Pages "Kind" "ne" "taxonomy") "Kind" "ne" "term" }}
+            {{ $pages = sort $pages "GitInfo.MergeCreateDate" "desc" }}
+            {{ $yearGroups := newScratch }}
+            {{ range $pages }}
+                {{ $year := .GitInfo.Year | default "0001" }}
+                {{ $existingGroup := $yearGroups.Get $year | default (slice) }}
+                {{ $updatedGroup := $existingGroup | append . }}
+                {{ $yearGroups.Set $year $updatedGroup }}
+            {{ end }}
+
+            {{$scratch := newScratch}}
+            {{ range $key, $value := $yearGroups.Values }}
+                {{$scratch.Add "keys" (slice $key) }}
+            {{ end }}
+            {{ $keys := $scratch.Get "keys" }}
+            {{ $sortedKeys := sort $keys "value" "desc" }}
+
+            {{ range $sortedKeys }}
+                {{ $year := . }}
+                {{ $group := $yearGroups.Get $year }}
+                <div class="timeline undefined">
+                    <div class="timeline-item headline">
+                        <div class="timeline-item-title"><div class="item-circle"><p>{{ $year }}</p></div></div>
+                    </div>
+                    {{ range $group }}
+                        <div class="timeline-item">
+                            <div class="timeline-item-title">
+                            <div class="item-circle">
+                                <p>{{ .GitInfo.MergeCreateDate | time.Format "2006年01月02日 15:04:05" }}</p>
+                            </div>
+                            </div>
+                            <div class="timeline-item-content grow">
+                                <a href="{{ .RelPermalink }}" style="line-height: 1.5em;" class="link f5 no-underline br-pill ba ph3 mb2 dib">{{ partial "docs/title.html" .  }}</a>
+                                {{- with or .Description .Summary site.Params.description | plainify | htmlUnescape | truncate 300}}
+                                <p> {{ trim . "\n\r\t " }} </p>
+                                {{- end }}
+                            </div>
+                        </div>
+                    {{ end }}
+                </div>
+            {{ end }}
+        </div>
+        {{ partial "docs/footer" .}}
+    </article>
+{{ end }}
+
+{{ define "menuContent" }}
+  <div class="book-menu-content"></div>
+{{ end }}
