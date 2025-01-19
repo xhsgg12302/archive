@@ -155,3 +155,8 @@ input.span.toggle:checked::before {content: '◒';}
 .content { display: none; }
 /* 当 input 被选中时显示 .content */
 input.span.toggle:checked + .content { display: inline; }
+
+.tracked {
+    letter-spacing: .1em;
+    margin: 0em !important;
+}
