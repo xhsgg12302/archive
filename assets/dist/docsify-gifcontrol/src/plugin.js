@@ -19,7 +19,7 @@ const defaultOptions = {
 }
 
 export function install() {
-  let allElements = Array.apply(null, document.querySelectorAll('.book-page img:not(.emoji):not([data-gifcontrol-disabled])'))
+  let allElements = Array.apply(null, document.querySelectorAll('.book-page img:not(.emoji):not([alt="data-gifcontrol-disabled"])'))
   let elms = allElements.filter(elm => elm.src.includes('.gif') && !elm.title.includes("-gifcontrol-disabled"))
   elms = elms.filter(elm => matchesSelector.call(elm, 'a img') === false)
   elms.forEach(elm => {
