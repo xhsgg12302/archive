@@ -260,8 +260,9 @@ body[dir="rtl"] .book-menu {
 }
 
 .book-comments {
-  width: 85%;
-  margin: 1rem auto;
+  // width: 85%;
+  // margin: 1rem auto;
+  margin: $padding-16 auto;
 }
 
 .book-languages {

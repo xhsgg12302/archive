@@ -12,9 +12,10 @@
 {{- $prismPluginCodeCollepaseJs := resources.Get "dist/code-highlight/prism-js/plugins/prism-code-collapse.js" -}}
 {{- $copyCodeJs := resources.Get "dist/copy-code/copy-code.js" -}}
 {{- $tabsInitJs := resources.Get "dist/docsify-tabs/tabs-init.js" -}}
+{{- $gifControlJs := resources.Get "dist/docsify-gifcontrol/dist/docsify-gifcontrol.js" -}}
 {{- $menuInitJs := resources.Get "dist/menu/menu-init.js" -}}
 {{- $indexjs := resources.Get "dist/index.js" -}}
-{{- $bundle := slice $backToTopJs $zoomImageJs $prismJs $prismPluginCodeCollepaseJs $copyCodeJs $tabsInitJs $menuInitJs $indexjs | resources.Concat "dist/index.bundle.js" | resources.Fingerprint "md5" | resources.Minify -}}
+{{- $bundle := slice $backToTopJs $zoomImageJs $prismJs $prismPluginCodeCollepaseJs $copyCodeJs $tabsInitJs $gifControlJs $menuInitJs $indexjs | resources.Concat "dist/index.bundle.js" | resources.Fingerprint "md5" | resources.Minify -}}
 <script src="{{$bundle.Permalink}}"></script>
 
 {{/*  https://docs.mathjax.org/en/latest/web/configuration.html  */ -}}
