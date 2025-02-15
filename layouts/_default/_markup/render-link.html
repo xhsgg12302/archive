@@ -20,7 +20,11 @@
                         $spacedurl
                     ) 
     }}
-    {{$fixedUrl := $relativeUrl | urlize }}
+    {{/*  
+        remove urlize func for normal jump.
+        {{$fixedUrl := $relativeUrl | urlize }}  
+    */}}
+    {{$fixedUrl := $relativeUrl }}
     {{/*  
         fixedUrl 有可能是锚点 或者带锚点的路径
         broken: 坏链接 class 修饰名
