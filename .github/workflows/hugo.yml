@@ -133,6 +133,30 @@ jobs:
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
           working-directory: ./public
 
+      # ===================================================================
+      # build with hugo for cloudflare pages
+      #     https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/#use-github-actions
+      #     https://developers.cloudflare.com/pages/configuration/git-integration/#disable-automatic-deployments
+      # ===================================================================
+      - name: Build with Hugo for cloudflare pages
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+          HUGO_ENVIRONMENT: production
+          TZ: Asia/Shanghai
+        run: |
+          hugo \
+            --gc \
+            --minify \
+            --baseURL "https://archive-dsr.pages.dev"
+      - name: Deploy to cloudflare pages step
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy ./public --project-name=archive
+          # Optional: Enable this if you want to have GitHub Deployments triggered
+          # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
   # Build job
   build-all-gh-pages:
     runs-on: ubuntu-22.04
