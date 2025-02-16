@@ -9,3 +9,4 @@ assets/indices
 
 **/.DS_Store
 **/node_modules
+.vercel

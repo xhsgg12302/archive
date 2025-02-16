@@ -63,7 +63,7 @@ jobs:
           REMOTE_USER: ${{ secrets.DOCS_USER }}
           TARGET: ${{ secrets.DOCS_TARGET_DIR_DOCSIFY }}
 
-  deploy-vps-tech:
+  deploy-static-for-items:
     environment:
       name: vps
     runs-on: ubuntu-22.04
@@ -84,7 +84,11 @@ jobs:
           path: /usr/local/bin/hugo
           key: hugo-binary-${{ runner.os }}-${{ hashFiles('./go.sum') }}
           fail-on-cache-miss: true
-      - name: Build with Hugo
+        
+      # ===================================================================
+      # build with hugo for tech vps
+      # ===================================================================
+      - name: Build with Hugo for tech
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production
@@ -94,8 +98,7 @@ jobs:
             --gc \
             --minify \
             --baseURL "https://tech.wtfu.site"
-      
-      - name: Deploy to vps tech step
+      - name: Deploy to tech vps step
         uses: easingthemes/ssh-deploy@v5.1.0
         env:
           ARGS: "-avz --delete"
@@ -106,6 +109,29 @@ jobs:
           REMOTE_PORT: ${{ secrets.DOCS_REMOTE_PORT }}
           REMOTE_USER: ${{ secrets.DOCS_USER }}
           TARGET: ${{ secrets.DOCS_TARGET_DIR_HUGO }}
+
+      # ===================================================================
+      # build with hugo for vercel app
+      # ===================================================================
+      - name: Build with Hugo for vercel app
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+          HUGO_ENVIRONMENT: production
+          TZ: Asia/Shanghai
+        run: |
+          hugo \
+            --gc \
+            --minify \
+            --baseURL "https://archive-pied.vercel.app"
+      - name: Deploy to vercel app step
+        uses: amondnet/vercel-action@v25
+        with:
+          # github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-args: '--prod'
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
+          working-directory: ./public
 
   # Build job
   build-all-gh-pages:
