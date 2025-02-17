@@ -42,6 +42,39 @@ img {
 //   @include outline;
 // }
 
+// borrowed from docsify
+.sidebar-toggle {
+  background-color: transparent;
+  background-color: hsla(0,0%,100%,.8);
+  border: 0;
+  outline: none;
+  padding: 6px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  transition: opacity .3s;
+  width: 15rem;
+  z-index: 30;
+  cursor: pointer
+}
+
+.sidebar-toggle:hover .sidebar-toggle-button {
+  opacity: .4
+}
+
+.sidebar-toggle span {
+  background-color: var(--header);
+  display: block;
+  margin-bottom: 3px;
+  width: 15px;
+  height: 2px
+}
+
+body .sidebar-toggle {
+  position: fixed
+}
+
 aside nav ul {
   padding: 0;
   margin: 0;

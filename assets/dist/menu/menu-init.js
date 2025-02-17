@@ -33,8 +33,18 @@
     };
 
     const route = parse();
+    let menuAside = document.querySelector('aside.book-menu');
+    (()=> {
+        let toggleButton = document.querySelector('button.sidebar-toggle');
+        toggleButton.addEventListener('click', function() {
+            if (menuAside.style.display === 'none') {
+                menuAside.style.display = 'block';
+            } else {
+                menuAside.style.display = 'none';
+            }
+        });
+    })()
     if (route.query.side === 'false') {
-        let menuAside = document.querySelector('aside.book-menu');
         menuAside.style.display = 'none';
         return;
     }

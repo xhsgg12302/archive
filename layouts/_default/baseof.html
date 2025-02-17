@@ -9,6 +9,7 @@
 <body dir="{{ default "ltr" .Site.Language.LanguageDirection }}">
   <input type="checkbox" class="hidden toggle" id="menu-control" />
   <main class="flex">
+    <button class="sidebar-toggle" aria-label="Menu"><div class="sidebar-toggle-button"><span></span><span></span><span></span></div></button>
     <aside class="book-menu">
       {{ template "menuContent" . }}
     </aside>
