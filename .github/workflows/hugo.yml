@@ -156,6 +156,30 @@ jobs:
           command: pages deploy ./public --project-name=archive
           # Optional: Enable this if you want to have GitHub Deployments triggered
           # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+        
+      # ===================================================================
+      # build with hugo for netlify app
+      # ===================================================================
+      - name: Build with Hugo for netlify app
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+          HUGO_ENVIRONMENT: production
+          TZ: Asia/Shanghai
+        run: |
+          hugo \
+            --gc \
+            --minify \
+            --baseURL "https://archive-w.netlify.app"
+      - name: Deploy to netlify app step
+        uses: jsmrcaga/action-netlify-deploy@v2.0.0
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          # NETLIFY_DEPLOY_MESSAGE: "Deployed from GitHub action"
+          NETLIFY_DEPLOY_TO_PROD: true
+          install_command: "echo Skipping installing the dependencies"
+          build_command: "echo Skipping building the web files"
+          build_directory: "./public"
 
   # Build job
   build-all-gh-pages:
