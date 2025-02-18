@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="{{ default .Site.Language.Lang .Site.LanguageCode  }}" dir="{{ default "ltr" .Site.Language.LanguageDirection }}">
+    <head>{{ partial "docs/html-head" . }}
+        <style>body{font-size:1.2em;margin:auto;padding:20px;max-width:800px}footer{position:fixed;left:0;bottom:0;width:100%;padding:10px 0;z-index:1000}</style>
+    </head>
+    <body dir="{{ default "ltr" .Site.Language.LanguageDirection }}">
+        <main>
+            <input class='toggle' id='darkmode-toggle' type='checkbox' tabindex="-1">
+            <!-- borrowed code from https://janraasch.github.io/hugo-bearblog/ -->
+            <h1 id=a-match-made-in-heaven>A match made in heaven</h1>
+            <p>There is a website obesity crisis. Bloated websites full of scripts, ads, and trackers are slowing your readers down every time they try to read your well-crafted content.</p>
+            <p>
+                Hugo Bear Blog is all you need to build a fantastic and optimized site or blog. It works perfectly on <strong>any</strong>
+                viewing device. All you need to focus on is writing good content.
+            </p>
+            <p><a href="{{ .Page.RelPermalink }}"/>Go to the original bear blog</a>.</p>
+            <hr>
+            <p>What happens when you combine the worlds &rsquo;fastest, most lightweight static site generator with a design theme built to provide you with free, no-nonsense, super-fast blogging capabilities?</p>
+            <p><strong>Use this theme, and find out!</strong></p>
+            <p>Made with 💟 by <a href="{{ .Page.RelPermalink }}">Cow's vagina(Super cool)</a>.</p>
+            <hr>
+            <p>Simply publish content online, grow an audience, and keep your pages tiny, fast, and <strong>optimized for search engines</strong>.</p>
+            <p>Each page is ~5kb, and you can <strong>host your blog yourself</strong>.</p>
+        </main>
+        <div id="copyright" style="font-size: 12px;"></div>
+        <script>
+            var footer = [
+                '<hr/>',
+                /*  copy from https://cmake.org/cmake/help/latest/guide/tutorial/Adding%20a%20Library.html
+                    `github-badge` style borrowed from https://typonotes.com/posts/2022/12/26/hugo-cdn/  
+                 */
+                '<footer style="text-align: center;line-height: 2em;"> ' + 
+                    '© Copyright 2021' + '-' + new Date().getFullYear() + ' 12302, Inc. and Contributors.<br>' + 
+                    '<div class="github-badge"><a style="color: inherit; text-decoration: underline;" href="https://gohugo.io/" target="_blank"><span class="badge-subject"> Created using </span><span class="badge-value bg-blue">Hugo</span></a></div>' +  "&nbsp;" + 
+                    '<div class="github-badge"><a style="color: inherit; text-decoration: underline;" href="https://github.com/gohugoio/hugo/tree/62567d38205a61134a6822d37a534520772419f1" target="_blank"><span class="badge-subject">Build </span><span class="badge-value bg-light-purple">62567d38 </span></a></div>' +  "&nbsp;" + 
+                    '<div class="github-badge"><a style="color: inherit; text-decoration: underline;" href="https://github.com/gohugoio/hugo/compare/master...12302-bak:hugo:_12302" target="_blank"><span class="badge-subject">Hugo</span><span class="badge-value bg-claret-red">12302-bak:hugo:_12302</span></a></div>' +  "&nbsp;" + 
+                    '<div class="github-badge"><a style="color: inherit; text-decoration: underline;" href="https://github.com/yuin/goldmark/compare/master...12302-bak:goldmark:_12302" target="_blank"><span class="badge-subject">Goldmark </span><span class="badge-value bg-claret-red">12302-bak:goldmark:_12302</span></a></div>' +  "&nbsp;" + 
+                    '<div class="github-badge"><a style="color: inherit; text-decoration: underline;" href="https://amethyst.bencuan.me/" target="_blank"><span class="badge-subject"> Theme </span></a><a style="color: inherit; text-decoration: underline;" href="https://github.com/64bitpandas/amethyst" target="_blank"><span class="badge-value bg-yellowgreen">Amethyst</span></a></div>' + 
+                '</footer>',
+            ].join('');
+            document.getElementById('copyright').innerHTML = footer;
+        </script>
+    </body>
+</html>
