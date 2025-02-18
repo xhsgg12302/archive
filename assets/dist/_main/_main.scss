@@ -329,6 +329,10 @@ body[dir="rtl"] .book-menu {
     display: inline;
   }
 
+  button.sidebar-toggle {
+    display: none;
+  }
+
   .book-menu {
     visibility: hidden;
     margin-inline-start: -$menu-width;
