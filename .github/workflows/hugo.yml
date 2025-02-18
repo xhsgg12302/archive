@@ -181,8 +181,7 @@ jobs:
           # resolve hidden folder via `build_command`
           #   https://answers.netlify.com/t/netlify-deploy-api-removes-files-and-directories-beginning-with-a-period/37728
           #   https://github.com/netlify/cli/issues/11#issuecomment-416386934
-          build_command: | 
-            echo '/.images/* /dotimages/:splat 200!' > ./public/_redirects && mv ./public/.images ./public/dotimages
+          build_command: "echo '/.images/* /dotimages/:splat 200!' > ./public/_redirects && mv ./public/.images ./public/dotimages"
           build_directory: "./public"
 
   # Build job
