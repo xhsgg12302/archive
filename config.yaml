@@ -65,6 +65,7 @@ taxonomies:
   timeline: timeline
   archive: archives
   about: about
+  contact: contact
 
 services:
   disqus:
