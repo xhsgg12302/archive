@@ -66,6 +66,7 @@ taxonomies:
   archive: archives
   about: about
   contact: contact
+  chess: chess
 
 services:
   disqus:

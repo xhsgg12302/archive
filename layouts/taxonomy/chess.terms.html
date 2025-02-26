@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="{{ default .Site.Language.Lang .Site.LanguageCode  }}" dir="{{ default "ltr" .Site.Language.LanguageDirection }}">
+    <head>{{ partial "docs/html-head" . }}{{- $rooted := .Page.Site.BaseURL }}
+        <link rel="stylesheet" href="{{$rooted}}.images/other/misc/chess/index.css">
+        <script src="{{$rooted}}.images/other/misc/chess/jquery.js"></script>
+        <script src="{{$rooted}}.images/other/misc/chess/vschess.js"></script>
+    </head>
+    <body dir="{{ default "ltr" .Site.Language.LanguageDirection }}">
+        <main><input class='toggle' id='darkmode-toggle' type='checkbox' tabindex="-1"></main>
+        <div class="manual" style="padding-top:80px;">
+            <div class="center">
+                <label for="gameSelect">选择棋谱:</label>
+                <select style="margin-bottom: 10px" id="gameSelect"></select>
+                <!-- 创建一个空白棋盘 -->
+                <div class="vschess"></div>
+                <script>
+                    const generateUUID = () => {
+                        return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+                            (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+                        );
+                    };
+
+                    $(document).ready(function() {
+                        $.ajax({
+                            url: "{{$rooted}}other/misc/chess/recipe.txt",
+                            method: 'GET',
+                            success: function(data) { processData(data);},
+                            error: function(error) { console.error('Error fetching the data:', error);}
+                        });
+                    });
+
+                    function processData(data) {
+                        var parts = data.split(/^-{3,}$[\n]+/m)
+                        let games = {};
+                    
+                        parts.forEach(part => {
+                            const titleMatch = part.match(/Title "(.*)"/);
+                            let title;
+                            if (titleMatch && titleMatch[1]) {title = titleMatch[1];}
+                            else { title = generateUUID(); }
+                            games[title] = part;
+                        });
+                    
+                        const selectElement = $('#gameSelect');
+                        $.each(games, function(title, content) { let option = $('<option>', {value: content, text: title}).appendTo(selectElement);});
+
+                        var chess = new vschess.load(".vschess", {
+                            ChineseChar: { Piece: "車馬相仕帥炮兵車馬象士將炮卒" },
+                            defaultTab: "edit",
+                            //turn: vschess.code.turn.round,
+                            playGap: 15,
+                            loadFinish: function() {
+                                // 在这里放置你的代码
+                                const selectElement = $('#gameSelect');
+                                var _this = this;
+                                selectElement.change(function() { _this.loadRecipe($(this).val()); });
+                                const optionsLength = $('#gameSelect option').length;
+                                const randomIndex = Math.floor(Math.random() * optionsLength);
+                                selectElement.prop('selectedIndex', randomIndex);
+                                if(selectElement.val()){ this.loadRecipe(selectElement.val()); }
+                            }
+                        });
+                    }
+                </script>
+            </div>
+        </div>
+        {{ partialCached "partials/docs/badge.html" . }}
+    </body>
+</html>
