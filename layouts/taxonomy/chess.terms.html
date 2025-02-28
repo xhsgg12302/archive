@@ -34,7 +34,7 @@
                         let games = {};
                     
                         parts.forEach(part => {
-                            const titleMatch = part.match(/Title "(.*)"/);
+                            const titleMatch = part.match(/Title ">?(.*?)<?"/);
                             let title;
                             if (titleMatch && titleMatch[1]) {title = titleMatch[1];}
                             else { title = generateUUID(); }
