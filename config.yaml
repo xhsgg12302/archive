@@ -68,6 +68,11 @@ taxonomies:
   contact: contact
   chess: chess
 
+# ref: https://gohugo.io/templates/output-formats/#output-formats-for-pages
+outputs:
+  taxonomy: [ html ]
+  term: [ html ]
+
 services:
   disqus:
     shortname: archive-5
