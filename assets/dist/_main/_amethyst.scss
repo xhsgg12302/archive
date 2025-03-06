@@ -74,10 +74,11 @@ header {
     height: 16px;
 }
 
-pre::-webkit-scrollbar {
-    width: 8px;
-    height: 10px;
-}
+// 一样的代码，左右代码块样式大小一，注释影响的css样式。
+// pre::-webkit-scrollbar {
+//     width: 8px;
+//     height: 10px;
+// }
 
 .book-toc-content::-webkit-scrollbar-thumb,
 .book-menu-content::-webkit-scrollbar-thumb {
