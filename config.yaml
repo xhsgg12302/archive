@@ -12,7 +12,7 @@ gitRepoDir: "content"
 enableEmoji: true
 
 # https://gohugo.io/templates/robots/
-# enableRobotsTXT: true
+enableRobotsTXT: true
 
 # # Needed for mermaid/katex shortcodes
 # see: https://gohugo.io/getting-started/configuration-markup/
