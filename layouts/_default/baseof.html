@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ default .Site.Language.Lang .Site.LanguageCode  }}" dir="{{ default "ltr" .Site.Language.LanguageDirection }}">
-<head>
-  {{ partial "docs/html-head" . }}
-</head>
-
+{{ template "header" .}}
 {{ partial "docs/search" . }}
 {{ partial "docs/header" . }}
 <body dir="{{ default "ltr" .Site.Language.LanguageDirection }}">
@@ -31,6 +28,11 @@
 </body>
 </html>
 
+{{- define "header" -}}
+<head>
+  {{ partial "docs/html-head" . }}
+</head>
+{{- end }}
 {{- define "menuContent" -}}
     <div class="book-menu-content">
       {{ partial "docs/menu/menu" . }}

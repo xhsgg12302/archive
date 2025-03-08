@@ -1,6 +1,12 @@
 
 
-
+{{- define "header" -}}
+<head>
+  {{ $data := dict "@context" "https://schema.org"  "@type" "WebSite"  "name" "吉尔吉福" "alternateName"  (slice "eli_w" "12302") "url" site.BaseURL -}}
+  <script type="application/ld+json">{{ $data }}</script>
+  {{ partial "docs/html-head" . }}
+</head>
+{{- end }}
 {{ define "main" }}
   <article class="12302-home markdown">
     <h1 class="title" style="text-align: center;">{{ partial "docs/title.html" . }}</h1>
