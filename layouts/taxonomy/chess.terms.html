@@ -11,6 +11,7 @@
             <div class="center">
                 <label for="gameSelect">选择棋谱:</label>
                 <select style="margin-bottom: 10px" id="gameSelect"></select>
+                <button id="copyRecipeLink">复制棋谱链接</button>
                 <!-- 创建一个空白棋盘 -->
                 <div class="vschess"></div>
                 <script>
@@ -19,17 +20,38 @@
                             (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
                         );
                     };
+                    function parseQuery(query) {
+                        var res = {};
+                        query = query.trim().replace(/^(\?|#|&)/, '');
+                        if (!query) { return res; }
+                
+                        query.split('&').forEach(function (param) {
+                            var parts = param.replace(/\+/g, ' ').replace(/#.*/, '').split('=');
+                            res[parts[0]] = parts[1] && decodeURIComponent(parts[1]);
+                        });
+                        return res;
+                    }
 
                     $(document).ready(function() {
+                        path = location.href;
+                        var query = '', queryIndex = path.indexOf('?');
+                        if (queryIndex >= 0) query = path.slice(queryIndex + 1);
+                        const option = parseQuery(query).option;
+
                         $.ajax({
                             url: "{{$rooted}}.images/other/misc/chess/recipe.txt",
                             method: 'GET',
-                            success: function(data) { processData(data);},
+                            success: function(data) { processData(data, option);},
                             error: function(error) { console.error('Error fetching the data:', error);}
+                        });
+
+                        $('#copyRecipeLink').click(function(){
+                            var selectedText = path.slice(0, queryIndex) + '?option=' + $('#gameSelect option:selected').text();
+                            navigator.clipboard.writeText(selectedText);
                         });
                     });
 
-                    function processData(data) {
+                    function processData(data, option) {
                         var parts = data.split(/^-{3,}$[\n]+/m)
                         let games = {};
                     
@@ -42,7 +64,10 @@
                         });
                     
                         const selectElement = $('#gameSelect');
-                        $.each(games, function(title, content) { let option = $('<option>', {value: content, text: title}).appendTo(selectElement);});
+                        $.each(games, function(title, content) { 
+                            let item = $('<option>', {value: content, text: title}).appendTo(selectElement); 
+                                if(title == option) item.prop('selected', true);
+                        });
 
                         var chess = new vschess.load(".vschess", {
                             ChineseChar: { Piece: "車馬相仕帥炮兵車馬象士將炮卒" },
@@ -54,9 +79,11 @@
                                 const selectElement = $('#gameSelect');
                                 var _this = this;
                                 selectElement.change(function() { _this.loadRecipe($(this).val()); });
-                                const optionsLength = $('#gameSelect option').length;
-                                const randomIndex = Math.floor(Math.random() * optionsLength);
-                                selectElement.prop('selectedIndex', randomIndex);
+                                if(!option){
+                                    const optionsLength = $('#gameSelect option').length;
+                                    const randomIndex = Math.floor(Math.random() * optionsLength);
+                                    selectElement.prop('selectedIndex', randomIndex);
+                                }
                                 if(selectElement.val()){ this.loadRecipe(selectElement.val()); }
                             }
                         });
