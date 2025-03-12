@@ -39,11 +39,11 @@
       const searchResults = contentIndex.search(term, [
         {
           field: "content",
-          limit: 20,
+          limit: 200,
         },
         {
           field: "title",
-          limit: 5,
+          limit: 50,
         },
       ])
       const getByField = (field) => {

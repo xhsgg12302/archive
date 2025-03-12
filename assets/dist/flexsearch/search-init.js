@@ -74,26 +74,29 @@ const removeMarkdown = (
 
 const highlight = (content, term) => {
   const highlightWindow = 20
+  const border = 200;
   // try to find direct match first
   const directMatchIdx = content.indexOf(term)
   if (directMatchIdx !== -1) {
     const h = highlightWindow
     const before = content.substring(0, directMatchIdx).split(" ").slice(-h)
     const after = content
-      .substring(directMatchIdx + term.length, content.length - 2)
+      //.substring(directMatchIdx + term.length, content.length - 2)
+      .substring(directMatchIdx + term.length )
       .split(" ")
-      .slice(0, h)
+      .slice(0, h);
+    const beforestr = (before.length === h ? `... ${before.join(" ")}` : before.join(" "));
+    const afterstr = after.join(" ");
     return (
-      (before.length === h ? `...${before.join(" ")}` : before.join(" ")) +
+      (beforestr.length > border ? `... ${beforestr.slice(beforestr.length - border)}` : beforestr) +
       `<span class="search-highlight">${term}</span>` +
-      after.join(" ")
+      (afterstr.length > border ? `${afterstr.substring(0,border)} ...` : afterstr)
     )
   }
 
   const tokenizedTerm = term.split(/\s+/).filter((t) => t !== "")
   const splitText = content.split(/\s+/).filter((t) => t !== "")
-  const includesCheck = (token) =>
-    tokenizedTerm.some((term) => token.toLowerCase().startsWith(term.toLowerCase()))
+  const includesCheck = (token) => tokenizedTerm.some((term) => token.toLowerCase().startsWith(term.toLowerCase()))
 
   const occurrencesIndices = splitText.map(includesCheck)
 
