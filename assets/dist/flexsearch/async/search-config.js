@@ -9,11 +9,13 @@
           field: "content",
           tokenize: "reverse",
           encode: encoder,
+          resolution: 4,
         },
         {
           field: "title",
           tokenize: "forward",
           encode: encoder,
+          resolution: 9,
         },
       ],
     })
@@ -43,7 +45,7 @@
         },
         {
           field: "title",
-          limit: 50,
+          limit: 10,
         },
       ])
       const getByField = (field) => {
@@ -54,7 +56,7 @@
           return [...results[0].result]
         }
       }
-      const allIds = new Set([...getByField("content")])
+      const allIds = new Set([...getByField("title"), ...getByField("content")])
       var regex = new RegExp(term,'g')
       const finalResults = [...allIds].map(formatForDisplay).filter( x => regex.test(x.content))
       displayResults(term, finalResults, true)
