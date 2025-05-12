@@ -1,3 +1,4 @@
+// borrowed code from: https://github.com/jhildenbiddle/docsify-tabs/blob/master/src/js/index.js
 (() => {
   const classNames = {
     tabsContainer: 'markdown',
@@ -123,6 +124,20 @@
 
       tabButtons.forEach(buttonElm => buttonElm.classList.remove(classNames.tabButtonActive));
       activeButton.classList.add(classNames.tabButtonActive);
+
+      // add persist for refresh
+      if (!_isMatchingTabSync) {
+        if (settings.persist) {
+          const tabBlocks = tabsContainer
+            ? Array.apply(null, tabsContainer.querySelectorAll(`.${classNames.tabBlock}`))
+            : [];
+          const tabBlockIndex = tabBlocks.indexOf(tabBlock);
+          const tabStorage = JSON.parse(sessionStorage.getItem(storageKeys.persist)) || {};
+  
+          tabStorage[tabBlockIndex] = activeButtonLabel;
+          sessionStorage.setItem(storageKeys.persist, JSON.stringify(tabStorage));
+        }
+      }
     }
   }
 
@@ -150,18 +165,12 @@
     }
   }
 
-
-  let hasTabs = true;
-
-  if (hasTabs) {
-    setDefaultTabs();
-    const tabsContainer = document.querySelector(`.${classNames.tabsContainer}`);
-
-    tabsContainer &&
-      tabsContainer.addEventListener('click', function handleTabClick(evt) {
-        setActiveTab(evt.target);
-      });
-    // 监听锚点链接变化，用来激活 tab
-    window.addEventListener('hashchange', () => setActiveTabFromAnchor(this.window.location.hash));
-  }
+  setDefaultTabs();
+  const tabsContainer = document.querySelector(`.${classNames.tabsContainer}`);
+  tabsContainer &&
+    tabsContainer.addEventListener('click', function handleTabClick(evt) {
+      setActiveTab(evt.target);
+    });
+  // 监听锚点链接变化，用来激活 tab
+  window.addEventListener('hashchange', () => setActiveTabFromAnchor(this.window.location.hash));
 })();
