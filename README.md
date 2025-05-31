@@ -1,6 +1,6 @@
 # Entrance
 
-| hosted $\textbackslash$ branch   | [hugo](https://github.com/xhsgg12302/archive/tree/hugo)  | [docsify](https://github.com/xhsgg12302/archive/tree/docsify) |
+| hosted / branch                  | [hugo](https://github.com/xhsgg12302/archive/tree/hugo)  | [docsify](https://github.com/xhsgg12302/archive/tree/docsify) |
 | --                               | --                                                       | --                                                            |
 |  vps                             | https://tech.wtfu.site                                   | ~https://docs.wtfu.site~                                      |
 |  github pages                    | [https://gh.io/archive/hugo/](https://xhsgg12302.github.io/archive/hugo/)    | ~https://xhsgg12302.github.io/archive/docsify/#/~             |
