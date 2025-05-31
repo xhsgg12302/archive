@@ -162,6 +162,9 @@ jobs:
       # resolve hidden folder
       #   https://answers.netlify.com/t/netlify-deploy-api-removes-files-and-directories-beginning-with-a-period/37728
       #   https://github.com/netlify/cli/issues/11#issuecomment-416386934
+      # 
+      # 不知何故，不让 netlify cli 构建，它偏要构建。（至少原来的版本比较尊重我们的意愿，是好使的）。现在我们不单独构建了，交给它吧。
+      #   https://discourse.gohugo.io/t/correct-baseurl-on-netlify-previews/10429
       # ===================================================================
       - name: Build with Hugo for netlify app
         env:
@@ -169,13 +172,22 @@ jobs:
           HUGO_ENVIRONMENT: production
           TZ: Asia/Shanghai
         run: |
-          hugo \
-            --gc \
-            --minify \
-            --baseURL "https://archive-w.netlify.app" && \
-          echo '/.images/* /dotimages/:splat 200!' > ./public/_redirects && mv ./public/.images ./public/dotimages
+          cat <<EOF > netlify.toml
+          [build]
+          publish = "public"
+          command = "hugo --gc --minify --baseURL 'https://archive-w.netlify.app'"
+          
+          # echo '/.images/* /dotimages/:splat 200!' > ./public/_redirects && mv ./public/.images ./public/dotimages
+          [[redirects]]
+          from = "/.images/*"
+          to = "/dotimages/:splat"
+          status = 200
+          force = true
+          EOF
+          mv ./public/.images ./public/dotimages
+
       - name: Deploy to netlify app step
-        uses: jsmrcaga/action-netlify-deploy@v2.0.0
+        uses: jsmrcaga/action-netlify-deploy@v2.4.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

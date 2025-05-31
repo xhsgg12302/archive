@@ -1,5 +1,6 @@
 baseURL: https://example.com
-languageCode: 'en-us'
+# languageCode: 'en-US'
+languageCode: 'zh-CN'
 title: 'archive'
 
 # Book configuration
