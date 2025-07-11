@@ -208,6 +208,7 @@ jobs:
           HUGO_ENVIRONMENT: production
           TZ: Asia/Shanghai
         run: |
+          rm -rf netlify.toml
           hugo \
             --gc \
             --minify \
