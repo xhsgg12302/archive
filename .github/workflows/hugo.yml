@@ -196,6 +196,27 @@ jobs:
           install_command: "echo Skipping installing the dependencies"
           build_command: "echo Skipping building the web files"
           build_directory: "./public"
+        
+      # ===================================================================
+      # build with hugo for edgeone app
+      #   https://edgeone.cloud.tencent.com/pages/document/180252837825597440
+      # 
+      # ===================================================================
+      - name: Build with Hugo for edgeone app
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+          HUGO_ENVIRONMENT: production
+          TZ: Asia/Shanghai
+        run: |
+          hugo \
+            --gc \
+            --minify \
+            --baseURL "https://archive-ome4equv.edgeone.site"
+      - name: Deploy to edgeone app step
+        run: npx edgeone pages deploy ./public -n archive -t ${{ secrets.EDGEONE_API_TOKEN }}
+        env:
+          EDGEONE_API_TOKEN: ${{ secrets.EDGEONE_API_TOKEN }}
+
 
   # Build job
   build-all-gh-pages:
