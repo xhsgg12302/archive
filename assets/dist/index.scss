@@ -155,3 +155,36 @@ input.span.toggle:checked + .content { display: inline; }
     letter-spacing: .1em;
     margin: 0em !important;
 }
+
+.no-hover-effect:hover {
+    color: inherit !important; /* 继承父级颜色，即保持 white-90 */
+}
+.nav-dropdown-menu {
+    position: absolute;
+    margin: 0;
+    padding: 0.25rem 0.55rem;
+    display: none;
+    //top: calc(3.5rem - 0.75rem);
+    border-radius: 5px;
+    border: 1px solid var(--header);
+    background-color: var(--header);
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+/* 鼠标移入 has-children li 时显示 ul */
+.has-children:hover .nav-dropdown-menu {
+    display: block;
+}
+
+.arrow-down {
+    display: inline-block;
+    transform: rotate(90deg);
+    font-style: normal;
+    /* 可选：微调位置 */
+    //vertical-align: middle;
+    font-size: 1.6em;
+    padding-bottom: 5px;
+    margin-right: 5px;
+    //margin-top: -2px;
+}

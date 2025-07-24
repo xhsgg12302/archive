@@ -3,7 +3,21 @@
   <label for="menu-control"><img src="{{ "svg/menu.svg" | relURL }}" class="book-icon" alt="Menu" /></label>
   <h1 id="page-title"><a href="{{ "" | absLangURL }}">{{ .Site.Params.Title }}</a></h1>
   <div class="spacer"></div>
-  <div id="search-icon" class="12302 quartz-search" style="width: 145px;">
+  {{/* nav of 'https://ananke-theme.netlify.app/' */ -}}
+  <div class="flex-l items-center">
+    <li class="list f5 f4-ns fw4 dib pr3 white-90 has-children">
+      <a class="no-hover-effect hover-white no-underline white-90" href="javascript:void(0);" >Pricing</a>
+      <i class="arrow-down" aria-hidden="true">›</i>
+      <ul class="pl0 mr3 nav-dropdown-menu">
+        <li class="list f5 f4-ns fw4 pr3"><a class="hover-white no-underline white-90" href="/archives/">Articles</a></li>
+        <li class="list f5 f4-ns fw4 pr3"><a class="hover-white no-underline white-90" href="/contact/">Contact</a></li>
+        <li class="list f5 f4-ns fw4 pr3"><a class="hover-white no-underline white-90" href="/about/">About</a></li>
+      </ul>
+    </li>
+    <li class="list f5 f4-ns fw4 dib pr3"><a class="hover-white no-underline white-90" href="/chess/" title="chinese chess">Chess</a></li>
+    <li class="list f5 f4-ns fw4 dib pr3"><a class="hover-white no-underline white-90" href="/other/template/" title="template example">Syntax</a></li>
+  </div>
+  <div id="search-icon" class="12302 quartz-search" style="margin-left:20px;width: 145px;">
     <p>{{ i18n "search" }}</p>
     <svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">{{ i18n "search_icon" }}</title><desc id="desc">{{ i18n "icon_search" }}</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg>
     <span class="search-hotkey-combination"><kbd class="search-hotkey">⌘k</kbd></span>

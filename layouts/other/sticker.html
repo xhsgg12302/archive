@@ -1,0 +1,78 @@
+{{/*
+    override `main` define of /themes/amethyst/_layouts/_default/baseof.html
+*/}}
+{{ define "main" }}
+  <article class="12302-single markdown">
+    <h1 class="title" style="text-align: center;">{{ partial "docs/title.html" . }}</h1>
+    <div style="text-align: center;">
+        {{ partial "docs/tags" .}}
+        {{ with .GitInfo }}
+          {{ if .FromGetJson }}
+            <p class="tracked">
+              <span style="color:red">FGJ:</span>
+              <span>Create: {{- .FromGetJson.CreateDate | time.Format "2006/01/02" -}}</span> 
+              <span style="padding-left:2em">Update: 
+                {{- if .AuthorDate.After  .FromGetJson.AuthorDate }} 
+                  ({{ .AuthorDate | time.Format (default "January 2, 2006" "2006-01-02") -}})
+                {{ else }}
+                  [{{ .FromGetJson.AuthorDate | time.Format (default "January 2, 2006" "2006-01-02") -}}]
+                {{ end }}
+              </span>
+            </p>
+          {{ else }}
+            <p class="tracked">
+              <span>Create: {{- .CreateDate | time.Format "2006/01/02" -}}</span> 
+              <span style="color:red">{{ .AbbreviatedHash }}</span>
+              <span style="padding-left:2em">Update: {{- .AuthorDate | time.Format (default "January 2, 2006" "2006-01-02") -}}</span>
+            </p>
+          {{ end }}
+        {{ end }}
+    </div>
+    <style>
+        .sticker {
+            width: 506px;
+            height: 694px;
+            font-size: 0;
+            text-indent: -999em;
+            background: url('{{ ".images/other/misc/wechat-sticker-02.png" | relURL }}') 0 0 no-repeat;
+        }
+    
+        .small {
+            background: url('{{ ".images/other/misc/wechat-sticker-02.png" | relURL }}') 0 0 no-repeat;
+            vertical-align: middle;
+            height: 53px !important;
+            width: 53px;
+            /* transform: scale(0.50); */
+            /* margin-top: -5px;
+              margin-left: -3px; */
+        }
+    
+        .markdown-section {
+            max-width: 100%;
+        }
+    </style>
+
+    <div style="display: none">
+        <div class="sticker"></div>
+        <div>
+            <div style='display: flex; margin-left: 90px ;margin-bottom: 40px'>
+                <div class="small" style="margin-left: 10px; background-position: 0 0;"></div>
+                <div class="sticker small" style="margin-left: 10px; background-position: -50px 0;"></div>
+                <div class="sticker small" style="margin-left: 10px; background-position: -100px 0;"></div>
+            </div>
+            <div style='display: flex; margin-left: 90px ;margin-bottom: 40px'>
+                <div class="small" style="margin-left: 10px; background-position: 0 -80px;"></div>
+                <div class="sticker small" style="margin-left: 10px; background-position: -50px -80px;"></div>
+                <div class="sticker small" style="margin-left: 10px; background-position: -100px -80px;"></div>
+            </div>
+            <div style='display: flex; margin-left: 90px ;margin-bottom: 40px'>
+                <div class="small" style="margin-left: 10px; background-position: 0 -160px;"></div>
+                <div class="sticker small" style="margin-left: 10px; background-position: -50px -160px;"></div>
+                <div class="sticker small" style="margin-left: 10px; background-position: -100px -160px;"></div>
+            </div>
+        </div>
+    </div>
+    {{- .Content | safeHTML -}}
+    {{ partial "docs/footer" .}}
+  </article>
+{{ end }}
