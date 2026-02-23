@@ -98,6 +98,16 @@ aside nav ul {
   }
 }
 
+aside.book-toc nav ul{
+ li {
+    max-width: 98%;
+  } 
+  a{
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
 ul.pagination {
   display: flex;
   justify-content: center;
