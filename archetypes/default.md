@@ -19,4 +19,8 @@ cascade :
 
 # cus
 # sideBarCollapse: true
+
+# hugo source code : page__content.go#contentToC().737 line
+# tocStartLevel: 2
+# tocEndLevel: 5
 ---
