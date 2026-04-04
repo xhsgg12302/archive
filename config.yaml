@@ -68,6 +68,7 @@ taxonomies:
   about: about
   contact: contact
   chess: chess
+  billiards: billiards
 
 # ref: https://gohugo.io/templates/output-formats/#output-formats-for-pages
 outputs:

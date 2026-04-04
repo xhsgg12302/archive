@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="{{ default .Site.Language.Lang .Site.LanguageCode  }}" dir="{{ default "ltr" .Site.Language.LanguageDirection }}">
+    <head>{{ partial "docs/html-head" . }}{{- $rooted := .Page.Site.BaseURL }}
+        <style>canvas{display:block}body{margin:0;background-color:#fff;overflow:hidden;font-family:sans-serif}#controls{position:absolute;top:20px;left:20px;z-index:10}button{padding:10px 20px;font-size:16px;cursor:pointer;background:#2c3e50;color:#fff;border:none;border-radius:5px}button:hover{background:#34495e}footer{position:fixed;left:0;bottom:0;width:100%;padding:10px 0;z-index:1000}</style>
+        <script type="module" crossorigin src="{{$rooted}}.images/other/misc/billiards/assets/index-iSZGYEaz.js"></script>
+    </head>
+    <title>台球看点模型</title>
+    <body dir="{{ default "ltr" .Site.Language.LanguageDirection }}">
+        <main><input class='toggle' id='darkmode-toggle' type='checkbox' tabindex="-1"></main>
+        <div id="controls" style="display: none;"><button id="resetBtn"></button></div>
+        <div id="scene-container" style="width: 100%; height: 500px; position: relative;"></div>
+        {{ partialCached "partials/docs/badge.html" . }}
+    </body>
+</html>
