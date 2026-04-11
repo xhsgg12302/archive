@@ -12,7 +12,7 @@
   <meta name="description" content="{{ trim . "\n\r\t " }}">
 {{- end }}
 
-  <title>{{ partial "docs/title" . }} | {{ .Site.Params.Title -}}</title>
+  <title>{{ partial "docs/title" . }} | {{ .Site.Params.Site_name -}}</title>
   {{ $manifest := resources.Get "manifest/manifest.json" | resources.ExecuteAsTemplate "manifest/manifest.json" . -}}
   <link rel="manifest" href="{{ $manifest.RelPermalink }}">
   <link rel="icon" href="{{ ".images/_media/favicon-tech.ico" | relURL }}" type="image/x-icon">

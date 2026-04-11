@@ -2,7 +2,7 @@
 
 {{- define "header" -}}
 <head>
-  {{ $data := dict "@context" "https://schema.org"  "@type" "WebSite"  "name" "吉尔吉福" "alternateName"  (slice "eli_w" "12302") "url" site.BaseURL -}}
+  {{ $data := dict "@context" "https://schema.org"  "@type" "WebSite"  "name" "吉尔吉福" "alternateName"  (slice "吉尔吉福供给工厂" "eli_w") "url" site.BaseURL -}}
   <script type="application/ld+json">{{ $data }}</script>
   {{ partial "docs/html-head" . }}
 </head>

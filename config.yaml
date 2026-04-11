@@ -85,6 +85,8 @@ params:
 
   name: xhsgg12302
   title: 📓 Archive
+  site_name: 自动垃圾回收集团
+  og_site_name: 伯拉堂科技有限公司
 
   # OPTIONAL: custom favicon location
   # favicon: 'location/to/favicon.png'
