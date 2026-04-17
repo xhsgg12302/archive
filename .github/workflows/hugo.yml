@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: docsify
           submodules: recursive
@@ -52,7 +52,7 @@ jobs:
           git submodule update  --init --recursive --remote
       
       - name: Deploy to vps docs step
-        uses: easingthemes/ssh-deploy@v5.1.0
+        uses: easingthemes/ssh-deploy@v6.0.1
         env:
           ARGS: "-avz --delete"
           EXCLUDE: "/.git/, /.github/"
@@ -70,7 +70,7 @@ jobs:
     needs: trigger-main-workflow
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: hugo
           submodules: recursive
@@ -79,7 +79,7 @@ jobs:
         run: |
           git submodule update  --init --recursive --remote
       - name: Cache Hugo binary
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: /usr/local/bin/hugo
           key: hugo-binary-${{ runner.os }}-${{ hashFiles('./go.sum') }}
@@ -99,7 +99,7 @@ jobs:
             --minify \
             --baseURL "https://tech.wtfu.site"
       - name: Deploy to tech vps step
-        uses: easingthemes/ssh-deploy@v5.1.0
+        uses: easingthemes/ssh-deploy@v6.0.1
         env:
           ARGS: "-avz --delete"
           # EXCLUDE: "/.git/, /.github/"
@@ -124,7 +124,7 @@ jobs:
             --minify \
             --baseURL "https://archive-pied.vercel.app"
       - name: Deploy to vercel app step
-        uses: amondnet/vercel-action@v25
+        uses: amondnet/vercel-action@v42
         with:
           # github-token: ${{ secrets.GITHUB_TOKEN }}
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
@@ -151,6 +151,7 @@ jobs:
       - name: Deploy to cloudflare pages step
         uses: cloudflare/wrangler-action@v3
         with:
+          wranglerVersion: "4"
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy ./public --project-name=archive
@@ -227,7 +228,7 @@ jobs:
     steps:
       - name: Cache Hugo binary
         id: cache-hugo-binary
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: /usr/local/bin/hugo
           key: hugo-binary-${{ runner.os }}-${{ hashFiles('./go.sum') }}
@@ -235,10 +236,10 @@ jobs:
       # 启用 github pages，获取和设置 metadata，比如 base_url
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Checkout hugo branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: hugo
           submodules: recursive
@@ -263,7 +264,7 @@ jobs:
           mkdir -p hugo ${{ runner.temp }}/content  && mv public hugo && mv hugo/public hugo/hugo && mv hugo/hugo ${{ runner.temp }}/content
  
       - name: Checkout docsify branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: docsify
           submodules: recursive
@@ -281,7 +282,7 @@ jobs:
           echo '<!DOCTYPE html><html lang="en"><body><a href="./hugo/">hugo</a><br><br><a href="./docsify/#/">docsify</a></body></html>' > ${{ runner.temp }}/content/index.html
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ${{ runner.temp }}/content
 
@@ -295,4 +296,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
