@@ -285,6 +285,7 @@ jobs:
         uses: actions/upload-pages-artifact@v5
         with:
           path: ${{ runner.temp }}/content
+          include-hidden-files: true
 
   # Deployment job
   deploy-all-gh-pages:
