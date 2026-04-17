@@ -124,7 +124,7 @@ jobs:
             --minify \
             --baseURL "https://archive-pied.vercel.app"
       - name: Deploy to vercel app step
-        uses: amondnet/vercel-action@v42
+        uses: amondnet/vercel-action@v42.2.0
         with:
           # github-token: ${{ secrets.GITHUB_TOKEN }}
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
