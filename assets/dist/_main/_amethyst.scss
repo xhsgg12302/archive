@@ -105,6 +105,16 @@ header {
     padding: 1.5rem 0 0 0;
 }
 
+span.artical-title {
+    display: block;
+    text-align: center;
+    font-family: var(--font-header);
+    font-size: 2em;
+    font-weight: 600;
+    padding: 1.5rem 0 0.3em 0;
+    color: #2c3e50;
+}
+
 .book-toc-content {
     font-weight: normal;
 }
