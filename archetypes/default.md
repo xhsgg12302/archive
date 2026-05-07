@@ -17,10 +17,17 @@ cascade :
 # bookComments: false
 # bookSearchExclude: false
 
-# cus
+#       cus
 # sideBarCollapse: true
 
-# hugo source code : page__content.go#contentToC().737 line
+#       hugo source code : page__content.go#contentToC().737 line
 # tocStartLevel: 2
 # tocEndLevel: 5
+
+#       debug from : hugolib/site.go:1440
+#       comment of '_internal/_default/sitemap.xml'
+# sitemap: { disable: true }
+
+#       comment of 'layouts/_default/rss.xml'
+# rss: { disable: true }
 ---

@@ -10,7 +10,7 @@
         <h1 class="title" style="text-align: center;">{{ partial "docs/title.html" . }}</h1>
     
         <div id="article-container">
-            {{ $pages := where (where .Site.Pages "Kind" "ne" "taxonomy") "Kind" "ne" "term" }}
+            {{ $pages := where (where (where .Site.Pages "Kind" "ne" "taxonomy") "Kind" "ne" "term") "Params.BookHidden" "ne" true }}
             {{ $pages = sort $pages "GitInfo.MergeCreateDate" "desc" }}
             {{ $yearGroups := newScratch }}
             {{ range $pages }}
