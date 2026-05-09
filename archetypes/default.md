@@ -28,6 +28,6 @@ cascade :
 #       comment of '_internal/_default/sitemap.xml'
 # sitemap: { disable: true }
 
-#       comment of 'layouts/_default/rss.xml'
+#       comment of 'layouts/rss.xml'
 # rss: { disable: true }
 ---
