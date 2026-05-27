@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ default .Site.Language.Lang .Site.LanguageCode  }}" dir="{{ default "ltr" .Site.Language.LanguageDirection }}">
-{{ template "header" .}}
-{{ partial "docs/search" . }}
-{{ partial "docs/header" . }}
+{{ template "head" .}}
 <body dir="{{ default "ltr" .Site.Language.LanguageDirection }}">
+  {{ partial "docs/search" . -}}
+  {{ partial "docs/header" . }}
+  <div>{{ now }}</div>
   <input type="checkbox" class="hidden toggle" id="menu-control" />
   <main class="flex">
     <button class="sidebar-toggle" aria-label="Menu"><div class="sidebar-toggle-button"><span></span><span></span><span></span></div></button>
@@ -28,13 +29,14 @@
 </body>
 </html>
 
-{{- define "header" -}}
+{{- define "head" -}}
 <head>
   {{ partial "docs/html-head" . }}
 </head>
 {{- end }}
+
 {{- define "menuContent" -}}
-    <div class="book-menu-content">
-      {{ partial "docs/menu/menu" . }}
-      </div>
+<div class="book-menu-content">
+  {{ partial "docs/menu/menu" . }}
+</div>
 {{- end }}

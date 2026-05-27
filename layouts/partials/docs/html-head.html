@@ -4,14 +4,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <meta name="msvalidate.01" content="3A1AB1D9D786E53627FB270A0EBF5978" />
+  {{- /*  <meta name="build_time" {{ now.Format "2006-01-02T15:04:05-07:00" | printf "content=%q" | safeHTMLAttr }}>  */}}
   {{/*  https://gohugo.io/functions/hugo/generator/  */}}
   {{ hugo.GeneratorBuildInfo }}
   <meta name="keywords" content="{{range .Site.Taxonomies.tags.ByCount }}{{ printf "%s," .Name }}{{end}}">
-  {{/*  https://developers.google.com/search/blog/2019/03/help-google-search-know-best-date-for?hl=zh-cn  */ -}}
-  <script type="application/ld+json">{ "@context": "https://schema.org","@type": "Article", "headline": {{ partial "docs/title.html" . }}, "datePublished": {{- .GitInfo.MergeCreateDate | time.Format "2006-01-02T15:04:05+08:00" -}},"dateModified": {{- .GitInfo.MergeUpdateDate | time.Format "2006-01-02T15:04:05+08:00" -}}, "author": {"@type": "Person","name": "12302" }}</script>
 {{- with or .Description .Summary site.Params.description | plainify | htmlUnescape | truncate 150 }}
   <meta name="description" content="{{ trim . "\n\r\t " }}">
 {{- end }}
+  {{/*  https://developers.google.com/search/blog/2019/03/help-google-search-know-best-date-for?hl=zh-cn  */ -}}
+  <script type="application/ld+json">{ "@context": "https://schema.org","@type": "Article", "headline": {{ partial "docs/title.html" . }}, "datePublished": {{- .GitInfo.MergeCreateDate | time.Format "2006-01-02T15:04:05+08:00" -}},"dateModified": {{- .GitInfo.MergeUpdateDate | time.Format "2006-01-02T15:04:05+08:00" -}}, "author": {"@type": "Person","name": "12302" }}</script>
 
   <title>{{ partial "docs/title" . }} | {{ .Site.Params.Site_name -}}</title>
   {{ $manifest := resources.Get "manifest/manifest.json" | resources.ExecuteAsTemplate "manifest/manifest.json" . -}}
