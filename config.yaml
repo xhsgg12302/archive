@@ -75,6 +75,10 @@ outputs:
   taxonomy: [ html ]
   term: [ html ]
 
+outputFormats:
+  RSS:
+    baseName: rss
+
 services:
   disqus:
     shortname: archive-5
