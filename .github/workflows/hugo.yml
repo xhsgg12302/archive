@@ -46,7 +46,7 @@ jobs:
         with:
           ref: docsify
           submodules: recursive
-          fetch-depth: 0
+          fetch-depth: 1
       - name: Update submodule
         run: |
           git submodule update  --init --recursive --remote
@@ -74,7 +74,7 @@ jobs:
         with:
           ref: hugo
           submodules: recursive
-          fetch-depth: 0
+          fetch-depth: 1
       - name: Update submodule
         run: |
           git submodule update  --init --recursive --remote
@@ -243,7 +243,7 @@ jobs:
         with:
           ref: hugo
           submodules: recursive
-          fetch-depth: 0
+          fetch-depth: 1
       - name: Update submodule
         run: |
           git submodule update  --init --recursive --remote
@@ -268,7 +268,7 @@ jobs:
         with:
           ref: docsify
           submodules: recursive
-          fetch-depth: 0
+          fetch-depth: 1
       - name: Update submodule
         run: |
           git submodule update  --init --recursive --remote
