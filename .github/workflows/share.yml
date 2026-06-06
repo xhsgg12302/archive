@@ -25,7 +25,7 @@ jobs:
       - name: Install Updated Hugo CLI if not cached
         if: steps.cache-hugo-binary.outputs.cache-hit != 'true'
         run: |
-          git clone https://github.com/12302-bak/hugo.git
+          git clone --depth 1 https://github.com/12302-bak/hugo.git
           cd hugo
           git checkout _12302
           CGO_ENABLED=1 GOBIN=/usr/local/bin go install -tags extended
