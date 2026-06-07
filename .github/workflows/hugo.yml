@@ -51,8 +51,8 @@ jobs:
         run: |
           git submodule sync --recursive
           git submodule init
-          git -c protocol.version=2 submodule update  --init --recursive --remote --force content
-          git -c protocol.version=2 submodule update  --init --recursive --depth=1 --remote --force static/.images
+          git -c protocol.version=2 submodule update  --init --recursive --remote --force docs
+          git -c protocol.version=2 submodule update  --init --recursive --depth=1 --remote --force .images
           # git submodule foreach --recursive git config --local gc.auto 0
       
       - name: Deploy to vps docs step
@@ -286,8 +286,8 @@ jobs:
         run: |
           git submodule sync --recursive
           git submodule init
-          git -c protocol.version=2 submodule update  --init --recursive --remote --force content
-          git -c protocol.version=2 submodule update  --init --recursive --depth=1 --remote --force static/.images
+          git -c protocol.version=2 submodule update  --init --recursive --remote --force docs
+          git -c protocol.version=2 submodule update  --init --recursive --depth=1 --remote --force .images
           # git submodule foreach --recursive git config --local gc.auto 0
 
       - name: Put docsify to temp subdir
