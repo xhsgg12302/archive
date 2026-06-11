@@ -8,15 +8,22 @@
 {{ "<!--" | safeHTML }} inject body end content, like js {{ "-->" | safeHTML }}
 {{- $backToTopJs := resources.Get "dist/vanilla-back-to-top/vanilla-back-to-top.min.js" -}}
 {{- $zoomImageJs := resources.Get "dist/zoom-image/medium-zoom.min.js" -}}
-{{- $prismJs := resources.Get "dist/code-highlight/prism-js/prism.js" -}}
-{{- $prismPluginCodeCollepaseJs := resources.Get "dist/code-highlight/prism-js/plugins/prism-code-collapse.js" -}}
-{{- $prismPluginColumnFilterJs := resources.Get "dist/code-highlight/prism-js/plugins/prism-column-filter.js" -}}
+
+{{- $prismSliceJs := slice -}}
+{{- /*  dist/code-highlight/prism-js/plugins/prism-autolinker.js  */ -}}
+{{- range slice
+    "dist/code-highlight/prism-js/prism.js"
+    "dist/code-highlight/prism-js/plugins/prism-code-collapse.js"
+    "dist/code-highlight/prism-js/plugins/prism-column-filter.js"
+-}}{{- with resources.Get . }}{{ $prismSliceJs = $prismSliceJs | append . }}{{ end }}{{ end -}}
+{{- $prismJs := $prismSliceJs | resources.Concat ".js" -}}
+
 {{- $copyCodeJs := resources.Get "dist/copy-code/copy-code.js" -}}
 {{- $tabsInitJs := resources.Get "dist/docsify-tabs/tabs-init.js" -}}
 {{- $gifControlJs := resources.Get "dist/docsify-gifcontrol/dist/docsify-gifcontrol.js" -}}
 {{- $menuInitJs := resources.Get "dist/menu/menu-init.js" -}}
 {{- $indexjs := resources.Get "dist/index.js" -}}
-{{- $bundle := slice $backToTopJs $zoomImageJs $prismJs $prismPluginCodeCollepaseJs $prismPluginColumnFilterJs $copyCodeJs $tabsInitJs $gifControlJs $menuInitJs $indexjs | resources.Concat "dist/index.bundle.js" | resources.Fingerprint "md5" | resources.Minify -}}
+{{- $bundle := slice $backToTopJs $zoomImageJs $prismJs $copyCodeJs $tabsInitJs $gifControlJs $menuInitJs $indexjs | resources.Concat "dist/index.bundle.js" | resources.Fingerprint "md5" | resources.Minify -}}
 <script src="{{$bundle.Permalink}}"></script>
 
 {{/*  https://docs.mathjax.org/en/latest/web/configuration.html  */ -}}

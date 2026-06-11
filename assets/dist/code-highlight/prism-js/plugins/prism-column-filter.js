@@ -18,11 +18,9 @@
             });
 
             env.code = processedLines.join('\n');
-            lines = env.element.innerHTML.split('\n');
-            var rst = lines.map(function(line, index) {
+            env.element.innerHTML  = env.element.innerHTML.split('\n').map(function(line, index) {
                 return line.substr(colCount);
             }).join('\n');
-            env.element.innerHTML = rst;
         }
     };
     function afterHighlight(env) {
