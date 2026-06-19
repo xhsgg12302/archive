@@ -10,10 +10,10 @@
 {{- $zoomImageJs := resources.Get "dist/zoom-image/medium-zoom.min.js" -}}
 
 {{- $prismSliceJs := slice -}}
-{{- /*  dist/code-highlight/prism-js/plugins/prism-autolinker.js  */ -}}
 {{- range slice
     "dist/code-highlight/prism-js/prism.js"
     "dist/code-highlight/prism-js/plugins/prism-code-collapse.js"
+    "dist/code-highlight/prism-js/plugins/prism-autolinker.js"
     "dist/code-highlight/prism-js/plugins/prism-column-filter.js"
 -}}{{- with resources.Get . }}{{ $prismSliceJs = $prismSliceJs | append . }}{{ end }}{{ end -}}
 {{- $prismJs := $prismSliceJs | resources.Concat ".js" -}}

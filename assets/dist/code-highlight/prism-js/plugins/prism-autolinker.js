@@ -28,7 +28,7 @@
 					def.inside = def.inside || {};
 
 					if (type == 'comment') {
-						def.inside['md-link'] = linkMd;
+						//def.inside['md-link'] = linkMd;
 					}
 					if (type == 'attr-value') {
 						Prism.languages.insertBefore('inside', 'punctuation', { 'url-link': url }, def);
@@ -36,11 +36,11 @@
 						def.inside['url-link'] = url;
 					}
 
-					def.inside['email-link'] = email;
+					//def.inside['email-link'] = email;
 				}
 			});
 			grammar['url-link'] = url;
-			grammar['email-link'] = email;
+			//grammar['email-link'] = email;
 		}
 	};
 
@@ -54,17 +54,19 @@
 
 			var href = env.content;
 
-			if (env.type == 'email-link' && href.indexOf('mailto:') != 0) {
-				href = 'mailto:' + href;
-			} else if (env.type == 'md-link') {
-				// Markdown
-				var match = env.content.match(linkMd);
+			// if (env.type == 'email-link' && href.indexOf('mailto:') != 0) {
+			// 	href = 'mailto:' + href;
+			// } else if (env.type == 'md-link') {
+			// 	// Markdown
+			// 	var match = env.content.match(linkMd);
 
-				href = match[2];
-				env.content = match[1];
-			}
+			// 	href = match[2];
+			// 	env.content = match[1];
+			// }
 
 			env.attributes.href = href;
+			env.attributes.rel = "noopener";
+			env.attributes.target = "_blank";
 
 			// Silently catch any error thrown by decodeURIComponent (#1186)
 			try {
