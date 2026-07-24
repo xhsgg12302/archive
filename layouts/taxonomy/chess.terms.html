@@ -9,9 +9,11 @@
         <main><input class='toggle' id='darkmode-toggle' type='checkbox' tabindex="-1"></main>
         <div class="manual" style="padding-top:80px;">
             <div class="center">
-                <label for="gameSelect">选择棋谱:</label>
+                <label for="categorySelect">选择棋谱:</label>
+                <select style="margin-bottom: 10px; margin-right: 10px;" id="categorySelect"></select>
+                <label for="gameSelect">选择棋局:</label>
                 <select style="margin-bottom: 10px" id="gameSelect"></select>
-                <button id="copyRecipeLink">复制棋谱链接</button>
+                <button id="copyRecipeLink">复制棋局链接</button>
                 <!-- 创建一个空白棋盘 -->
                 <div class="vschess"></div>
                 <script>
@@ -21,37 +23,57 @@
                         );
                     };
                     function parseQuery(query) {
-                        var res = {};
+                        var params = {};
                         query = query.trim().replace(/^(\?|#|&)/, '');
-                        if (!query) { return res; }
+                        if (!query) { return params; }
                 
                         query.split('&').forEach(function (param) {
                             var parts = param.replace(/\+/g, ' ').replace(/#.*/, '').split('=');
-                            res[parts[0]] = parts[1] && decodeURIComponent(parts[1]);
+                            params[parts[0]] = parts[1] && decodeURIComponent(parts[1]);
                         });
-                        return res;
+                        return params;
                     }
 
+                    const recipeConfig = {
+                        "JJ象棋-单骑绝尘"   : "recipe-jj-01.txt",
+                        "抖音解说-钟珍"     : "recipe-dy-01.txt",
+                    };
+                    
                     $(document).ready(function() {
                         path = location.href;
                         var query = '', queryIndex = path.indexOf('?');
                         if (queryIndex >= 0) query = path.slice(queryIndex + 1);
-                        const option = parseQuery(query).option;
+                        var params = parseQuery(query);
 
-                        $.ajax({
-                            url: "{{$rooted}}.images/other/misc/chess/recipe.txt",
-                            method: 'GET',
-                            success: function(data) { processData(data, option);},
-                            error: function(error) { console.error('Error fetching the data:', error);}
+                        var recipe = $('#categorySelect');
+                        $.each(recipeConfig, function(categoryName, fileNames) {
+                            let item = $('<option>', { value: fileNames, text: categoryName }).appendTo(recipe);
+                            if(categoryName == params.recipe) item.prop('selected', true);
                         });
+                        if(!params.recipe){
+                            const randomIndex = Math.floor(Math.random() * $('#categorySelect option').length);
+                            recipe.prop('selectedIndex', randomIndex);
+                        } else {params.recipe = '';}
+                        recipe.change(function() { processRecipe(params); });
+                        processRecipe(params);
 
                         $('#copyRecipeLink').click(function(){
-                            var selectedText = path.slice(0, queryIndex) + '?option=' + $('#gameSelect option:selected').text();
+                            var selectedText = path.slice(0, queryIndex) + '?recipe=' + $('#categorySelect option:selected').text() + '&option=' + $('#gameSelect option:selected').text();
                             navigator.clipboard.writeText(selectedText);
                         });
                     });
 
-                    function processData(data, option) {
+                    function processRecipe(params){
+                        var selectedRecipe = $('#categorySelect').val();
+                        $.ajax({
+                            url: "{{$rooted}}.images/other/misc/chess/" + selectedRecipe,
+                            method: 'GET',
+                            success: function(data) { processData(data, params);},
+                            error: function(error) { console.error('Error fetching the data:', error);}
+                        });
+                    }
+
+                    function processData(data, params) {
                         var parts = data.split(/^-{3,}$[\n]+/m)
                         let games = {};
                     
@@ -63,30 +85,41 @@
                             games[title] = part;
                         });
                     
-                        const selectElement = $('#gameSelect');
+                        const selectElement = $('#gameSelect'); selectElement.empty();
                         $.each(games, function(title, content) { 
                             let item = $('<option>', {value: content, text: title}).appendTo(selectElement); 
-                                if(title == option) item.prop('selected', true);
+                            if(title == params.option) item.prop('selected', true);
                         });
+                        if(!params.option){
+                            const randomIndex = Math.floor(Math.random() * $('#gameSelect option').length);
+                            selectElement.prop('selectedIndex', randomIndex);
+                        }else{ params.option = '';}
+                        //selectElement.trigger('change');
 
-                        var chess = new vschess.load(".vschess", {
+                        selectElement.change(function() { initChess();});
+                        
+                        initChess();
+                    }
+
+                    var chessboard;
+                    function initChess(){
+                        if(chessboard) chessboard.unload();
+                        const gameSelect = $('#gameSelect');
+                        vschessFields = {
                             ChineseChar: { Piece: "車馬相仕帥炮兵車馬象士將炮卒" },
-                            defaultTab: "edit",
+                            //defaultTab: "edit",
+                            defaultTab: "comment",
                             //turn: vschess.code.turn.round,
-                            playGap: 15,
-                            loadFinish: function() {
-                                // 在这里放置你的代码
-                                const selectElement = $('#gameSelect');
-                                var _this = this;
-                                selectElement.change(function() { _this.loadRecipe($(this).val()); });
-                                if(!option){
-                                    const optionsLength = $('#gameSelect option').length;
-                                    const randomIndex = Math.floor(Math.random() * optionsLength);
-                                    selectElement.prop('selectedIndex', randomIndex);
-                                }
-                                if(selectElement.val()){ this.loadRecipe(selectElement.val()); }
-                            }
-                        });
+                            playGap: 15
+                        }
+                        function loadFinish() { if(gameSelect.val()){ this.loadRecipe(gameSelect.val()); } }
+                        const fieldMatch = gameSelect.val().match(/Field ">?(.*?)<?"/);
+                        if (fieldMatch && fieldMatch[1]) {
+                            const configFields = (new Function("return " + fieldMatch[1]))();
+                            vschessFields = { ...vschessFields, ...configFields };
+                        }
+                        vschessFields.loadFinish = loadFinish;
+                        chessboard = new vschess.load(".vschess", vschessFields);
                     }
                 </script>
             </div>
