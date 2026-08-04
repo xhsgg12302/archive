@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="{{ default .Site.Language.Lang .Site.LanguageCode  }}" dir="{{ default "ltr" .Site.Language.LanguageDirection }}">
     <head>{{ partial "docs/html-head" . }}{{- $rooted := .Page.Site.BaseURL }}
-        <link rel="stylesheet" href="{{$rooted}}.images/other/misc/chess/index.css">
-        <script src="{{$rooted}}.images/other/misc/chess/jquery.js"></script>
-        <script src="{{$rooted}}.images/other/misc/chess/vschess.js"></script>
+        <link rel="stylesheet" href="{{$rooted}}.images/other/misc/taxonomies/chess/index.css">
+        <script src="{{$rooted}}.images/other/misc/taxonomies/chess/jquery.js"></script>
+        <script src="{{$rooted}}.images/other/misc/taxonomies/chess/vschess.js"></script>
     </head>
     <body dir="{{ default "ltr" .Site.Language.LanguageDirection }}">
         <main><input class='toggle' id='darkmode-toggle' type='checkbox' tabindex="-1"></main>
         <div class="manual" style="padding-top:80px;">
             <div class="center">
-                <label for="categorySelect">选择棋谱:</label>
-                <select style="margin-bottom: 10px; margin-right: 10px;" id="categorySelect"></select>
-                <label for="gameSelect">选择棋局:</label>
-                <select style="margin-bottom: 10px" id="gameSelect"></select>
-                <button id="copyRecipeLink">复制棋局链接</button>
+                <div class="top-controls">
+                    <label for="categorySelect">选择棋谱:</label>
+                    <select style="margin-bottom: 10px; margin-right: 10px;" id="categorySelect"></select>
+                    <label for="gameSelect">选择棋局:</label>
+                    <select style="margin-bottom: 10px" id="gameSelect"></select>
+                    <button id="copyRecipeLink">复制棋局链接</button>
+                    <button id="chessdb">云库</button>
+                </div>
                 <!-- 创建一个空白棋盘 -->
                 <div class="vschess"></div>
                 <script>
@@ -36,9 +39,10 @@
 
                     const recipeConfig = {
                         "JJ象棋-单骑绝尘"   : "recipe-jj-01.txt",
-                        "抖音解说-钟珍"     : "recipe-dy-01.txt",
+                        "抖音解说" : "recipe-dy-01.txt",
                     };
-                    
+
+                    var chessboard;
                     $(document).ready(function() {
                         path = location.href;
                         var query = '', queryIndex = path.indexOf('?');
@@ -61,12 +65,21 @@
                             var selectedText = path.slice(0, queryIndex) + '?recipe=' + $('#categorySelect option:selected').text() + '&option=' + $('#gameSelect option:selected').text();
                             navigator.clipboard.writeText(selectedText);
                         });
+
+                        $('#chessdb').click(function(){
+                            if(chessboard) {
+                                var currentFen = chessboard.getCurrentFen().split(' ');
+                                const fen = currentFen[0] + '_' + currentFen[1];
+                                console.log(fen);
+                                window.open('https://www.chessdb.cn/query/?' + fen, '_blank');
+                            }
+                        });
                     });
 
                     function processRecipe(params){
                         var selectedRecipe = $('#categorySelect').val();
                         $.ajax({
-                            url: "{{$rooted}}.images/other/misc/chess/" + selectedRecipe,
+                            url: "{{$rooted}}.images/other/misc/taxonomies/chess/" + selectedRecipe,
                             method: 'GET',
                             success: function(data) { processData(data, params);},
                             error: function(error) { console.error('Error fetching the data:', error);}
@@ -101,7 +114,6 @@
                         initChess();
                     }
 
-                    var chessboard;
                     function initChess(){
                         if(chessboard) chessboard.unload();
                         const gameSelect = $('#gameSelect');
@@ -112,7 +124,12 @@
                             //turn: vschess.code.turn.round,
                             playGap: 15
                         }
-                        function loadFinish() { if(gameSelect.val()){ this.loadRecipe(gameSelect.val()); } }
+                        function loadFinish() { 
+                            if(gameSelect.val()){ this.loadRecipe(gameSelect.val()); }
+
+                            const moveList = $('.vschess-move-select-list');
+                            if (moveList) { moveList.on('click', function(e) { this.classList.toggle('blur-mask'); }); }
+                        }
                         const fieldMatch = gameSelect.val().match(/Field ">?(.*?)<?"/);
                         if (fieldMatch && fieldMatch[1]) {
                             const configFields = (new Function("return " + fieldMatch[1]))();

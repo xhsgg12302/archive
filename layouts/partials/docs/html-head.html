@@ -7,7 +7,7 @@
   {{- /*  <meta name="build_time" {{ now.Format "2006-01-02T15:04:05-07:00" | printf "content=%q" | safeHTMLAttr }}>  */}}
   {{/*  https://gohugo.io/functions/hugo/generator/  */}}
   {{ hugo.GeneratorBuildInfo }}
-  <meta name="keywords" content="{{range .Site.Taxonomies.tags.ByCount }}{{ printf "%s," .Name }}{{end}}">
+  <meta name="keywords" content="{{ if .Params.def_keywords }}{{ printf "%s" .Params.def_keywords }}{{else}}{{range .Site.Taxonomies.tags.ByCount }}{{ printf "%s," .Name }}{{end}}{{end}}">
 {{- with or .Description .Summary site.Params.description | plainify | htmlUnescape | truncate 150 }}
   <meta name="description" content="{{ trim . "\n\r\t " }}">
 {{- end }}

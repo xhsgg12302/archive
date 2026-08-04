@@ -70,6 +70,17 @@ taxonomies:
   chess: chess
   billiards: billiards
 
+module:
+  mounts:
+    - source: "content"
+      target: "content"
+    - source: "content/other/misc/taxonomies/about"
+      target: "content/about"
+    - source: "content/other/misc/taxonomies/chess"
+      target: "content/chess"
+    - source: "content/other/misc/taxonomies/billiards"
+      target: "content/billiards"
+
 # ref: https://gohugo.io/templates/output-formats/#output-formats-for-pages
 outputs:
   taxonomy: [ html ]
