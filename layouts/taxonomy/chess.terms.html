@@ -117,8 +117,10 @@
                     function initChess(){
                         if(chessboard) chessboard.unload();
                         const gameSelect = $('#gameSelect');
+                        // https://www.xiaxiangqi.com/vschess/manual.html
                         vschessFields = {
-                            ChineseChar: { Piece: "車馬相仕帥炮兵車馬象士將炮卒" },
+                            ChineseChar: { Piece: "車馬相仕帥炮兵車馬象士將砲卒" },
+                            style: "default",
                             //defaultTab: "edit",
                             defaultTab: "comment",
                             //turn: vschess.code.turn.round,
