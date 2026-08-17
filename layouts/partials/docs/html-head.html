@@ -12,7 +12,7 @@
   <meta name="description" content="{{ trim . "\n\r\t " }}">
 {{- end }}
   {{/*  https://developers.google.com/search/blog/2019/03/help-google-search-know-best-date-for?hl=zh-cn  */ -}}
-  <script type="application/ld+json">{ "@context": "https://schema.org","@type": "Article", "headline": {{ partial "docs/title.html" . }}, "datePublished": {{- .GitInfo.MergeCreateDate | time.Format "2006-01-02T15:04:05+08:00" -}},"dateModified": {{- .GitInfo.MergeUpdateDate | time.Format "2006-01-02T15:04:05+08:00" -}}, "author": {"@type": "Person","name": "12302" }}</script>
+  <script type="application/ld+json">{ "@context": "https://schema.org", "@graph": [ {{ if .IsHome -}} { "@type": "WebSite", "@id": {{ (print site.BaseURL "#website") | jsonify | safeJS }}, "name": "吉尔吉福", "alternateName": ["吉尔吉福供给工厂", "eli_w"], "url": {{ site.BaseURL | jsonify | safeJS }} }, {{ end -}} { "@type": "Article", "@id": {{ (print .Permalink "#article") | jsonify | safeJS }}, "headline": "{{ if .IsHome }}Home{{ else }}{{ partial "docs/title.html" . }}{{ end }}", "datePublished": {{- .GitInfo.MergeCreateDate | time.Format "2006-01-02T15:04:05+08:00" -}}, "dateModified": {{- .GitInfo.MergeUpdateDate | time.Format "2006-01-02T15:04:05+08:00" -}}, "author": {"@type": "Person","name": "12302","url": "https://wtfu.site" } } ] }</script>
 
   <title>{{ partial "docs/title" . }} | {{ .Site.Params.Site_name -}}</title>
   {{ $manifest := resources.Get "manifest/manifest.json" | resources.ExecuteAsTemplate "manifest/manifest.json" . -}}
