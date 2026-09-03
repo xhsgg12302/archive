@@ -127,6 +127,8 @@
                             playGap: 15
                         }
                         function loadFinish() { 
+                            this._.exportFormat = 'DhtmlXQ';
+                            $('select.vschess-tab-body-export-format').prop('selectedIndex', 4);
                             if(gameSelect.val()){ this.loadRecipe(gameSelect.val()); }
 
                             const moveList = $('.vschess-move-select-list');

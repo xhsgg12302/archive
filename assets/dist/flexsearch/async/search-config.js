@@ -22,10 +22,11 @@
   
     const { content } = await fetchData
     for (const [key, value] of Object.entries(content)) {
+      value.content = removeMarkdown(value.content);
       contentIndex.add({
         id: key,
         title: value.title,
-        content: removeMarkdown(value.content),
+        content: value.content,
       })
     }
   

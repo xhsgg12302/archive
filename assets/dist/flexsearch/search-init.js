@@ -24,8 +24,8 @@ const removeMarkdown = (
     listUnicodeChar: false,
     stripListLeaders: true,
     gfm: true,
-    useImgAltText: false,
-    preserveLinks: false,
+    useImgAltText: true,
+    preserveLinks: true,
   },
 ) => {
   let output = markdown || ""
@@ -45,7 +45,8 @@ const removeMarkdown = (
         .replace(/`{3}.*\n/g, "")
     }
     if (options.preserveLinks) {
-      output = output.replace(/\[(.*?)\][\[\(](.*?)[\]\)]/g, "$1 ($2)")
+      //output = output.replace(/\[(.*?)\][\[\(](.*?)[\]\)]/g, "$1 ($2)")
+      output = output.replace(/\[(.*?)\][\[\(]\s*(\S*).*[\]\)]/g, "[$1 $2]($2)")
     }
     output = output
       .replace(/<[^>]*>/g, "")
@@ -263,7 +264,7 @@ const displayResults = (term, finalResults, extractHighlight = false) => {
           return resultToHTML({
             url: result.url,
             title: highlight(result.title, term),
-            content: highlight(removeMarkdown(result.content), term)
+            content: highlight(result.content, term)
           })
         } else {
           return resultToHTML(result)
