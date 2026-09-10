@@ -132,7 +132,10 @@
                             if(gameSelect.val()){ this.loadRecipe(gameSelect.val()); }
 
                             const moveList = $('.vschess-move-select-list');
-                            if (moveList) { moveList.on('click', function(e) { this.classList.toggle('blur-mask'); }); }
+                            if (moveList) { 
+                                moveList[0].style.setProperty('--blur-mask-view-height', `${moveList.prop('scrollHeight')}px`);
+                                moveList.on('click', function(e) { this.classList.toggle('blur-mask'); });
+                            }
                         }
                         const fieldMatch = gameSelect.val().match(/Field ">?(.*?)<?"/);
                         if (fieldMatch && fieldMatch[1]) {
