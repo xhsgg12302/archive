@@ -59,7 +59,7 @@
       }
       const allIds = new Set([...getByField("title"), ...getByField("content")])
       var regex = new RegExp(term,'g')
-      const finalResults = [...allIds].map(formatForDisplay).filter( x => regex.test(x.content))
+      const finalResults = [...allIds].map(formatForDisplay); //.filter( x => regex.test(x.content))
       displayResults(term, finalResults, true)
     })
 })()  
