@@ -21,14 +21,18 @@ mark.clever {
     //padding: .2rem;
 }
 mark.leaf {
-    //display: inline-block;
+    // display: inline-block;
     color: inherit;
-    background: none;
-    border: 1px solid #000;
+    // border: 1px solid #000;
     box-shadow: 0 0 2px #fff;
     padding: 1px;
     //background: rgba(0, 0, 0, 0.2);
-    background: #ddde4388;
+    --default-color: #ddde43; 
+    background: linear-gradient(-100deg, 
+        color-mix(in srgb, var(--box-shadow-color, var(--default-color)) 30%, transparent), 
+        color-mix(in srgb, var(--box-shadow-color, var(--default-color)) 70%, transparent) 95%, 
+        color-mix(in srgb, var(--box-shadow-color, var(--default-color)) 10%, transparent)
+    );
 }
 mark.box {
     outline: .2em solid transparent;
