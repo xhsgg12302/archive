@@ -28,7 +28,7 @@
 
 {{/*  https://docs.mathjax.org/en/latest/web/configuration.html  */ -}}
 <script>MathJax = { tex: { inlineMath: [ ['\\(', '\\)'] ], displayMath: [ ['\\[', '\\]'] ], } }; </script>
-<script async type="text/javascript" id="MathJax-script" src="https://static.wtfu.site/dist/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script async type="text/javascript" id="MathJax-script" src="{{ "mathjax@3/es5/tex-mml-chtml.js" | relURL }}"></script>
 <!-- 
     mermaid return [object Promise]
     https://stackoverflow.com/questions/76530311/mermaid-in-docsify-return-object-promise
@@ -39,7 +39,7 @@
     ```
     ==> 9.4.3
 -->
-<script async src="https://static.wtfu.site/dist/mermaid/mermaid.min.js"></script>
+<script async src="{{ "mermaid/mermaid.min.js" | relURL }}"></script>
 <script>
     const hello = 'world';
 

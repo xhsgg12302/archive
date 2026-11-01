@@ -12,14 +12,14 @@
   <meta name="description" content="{{ trim . "\n\r\t " }}">
 {{- end }}
   {{/*  https://developers.google.com/search/blog/2019/03/help-google-search-know-best-date-for?hl=zh-cn  */ -}}
-  <script type="application/ld+json">{ "@context": "https://schema.org", "@graph": [ {{ if .IsHome -}} { "@type": "WebSite", "@id": {{ (print site.BaseURL "#website") | jsonify | safeJS }}, "name": "吉尔吉福", "alternateName": ["吉尔吉福供给工厂", "eli_w"], "url": {{ site.BaseURL | jsonify | safeJS }} }, {{ end -}} { "@type": "Article", "@id": {{ (print .Permalink "#article") | jsonify | safeJS }}, "headline": "{{ if .IsHome }}Home{{ else }}{{ partial "docs/title.html" . }}{{ end }}", "datePublished": {{- .GitInfo.MergeCreateDate | time.Format "2006-01-02T15:04:05+08:00" -}}, "dateModified": {{- .GitInfo.MergeUpdateDate | time.Format "2006-01-02T15:04:05+08:00" -}}, "author": {"@type": "Person","name": "12302","url": "https://wtfu.site" } } ] }</script>
+  <script type="application/ld+json">{ "@context": "https://schema.org", "@graph": [ {{ if .IsHome -}} { "@type": "WebSite", "@id": {{ (print site.BaseURL "#website") | jsonify | safeJS }}, "name": "吉尔吉福", "alternateName": ["吉尔吉福供给工厂", "eli_w"], "url": {{ site.BaseURL | jsonify | safeJS }} }, {{ end -}} { "@type": "Article", "@id": {{ (print .Permalink "#article") | jsonify | safeJS }}, "headline": "{{ if .IsHome }}Home{{ else }}{{ partial "docs/title.html" . }}{{ end }}", "datePublished": {{- .GitInfo.MergeCreateDate | time.Format "2006-01-02T15:04:05+08:00" -}}, "dateModified": {{- .GitInfo.MergeUpdateDate | time.Format "2006-01-02T15:04:05+08:00" -}}, "author": {"@type": "Person","name": "12302","url": "https://wtfue.com" } } ] }</script>
 
   <title>{{ partial "docs/title" . }} | {{ .Site.Params.Site_name -}}</title>
   {{ $manifest := resources.Get "manifest/manifest.json" | resources.ExecuteAsTemplate "manifest/manifest.json" . -}}
   <link rel="manifest" href="{{ $manifest.RelPermalink }}">
-  <link rel="icon" href="{{ ".images/_media/favicon-tech.ico" | relURL }}" type="image/x-icon">
-  <link rel="preload" href="https://static.wtfu.site/fonts/fonts/zYX9KVElMYYaJe8bpLHnCwDKjQ76AIFsdP3pBms.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="https://static.wtfu.site/fonts/fonts/zYXgKVElMYYaJe8bpLHnCwDKhdHeFaxOedc.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="{{ ".images/_media/favicon-tech.ico" | relURL }}" type="image/x-icon">{{ $basePath := partialCached "partials/docs/uri" .Page.Site }}
+  <link rel="preload" href="{{ $basePath }}/fonts/fonts/zYX9KVElMYYaJe8bpLHnCwDKjQ76AIFsdP3pBms.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ $basePath }}/fonts/fonts/zYXgKVElMYYaJe8bpLHnCwDKhdHeFaxOedc.woff2" as="font" type="font/woff2" crossorigin>
 
 {{ partial "_internal/opengraph.html" . }}
 {{ partialCached "_internal/google_analytics.html" . }}

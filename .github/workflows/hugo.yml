@@ -61,7 +61,7 @@ jobs:
           ARGS: "-avz --delete"
           EXCLUDE: "/.git/, /.github/"
           SOURCE: "./"
-          REMOTE_HOST: "wtfu.site"
+          REMOTE_HOST: "id.wtfue.com"
           SSH_PRIVATE_KEY: ${{ secrets.DOCS_ACCESS_TOKEN }}
           REMOTE_PORT: ${{ secrets.DOCS_REMOTE_PORT }}
           REMOTE_USER: ${{ secrets.DOCS_USER }}
@@ -106,14 +106,14 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "https://tech.wtfu.site"
+            --baseURL "https://tech.wtfue.com"
       - name: Deploy to tech vps step
         uses: easingthemes/ssh-deploy@v6.0.1
         env:
           ARGS: "-avz --delete"
           # EXCLUDE: "/.git/, /.github/"
           SOURCE: "./public/"
-          REMOTE_HOST: "wtfu.site"
+          REMOTE_HOST: "id.wtfue.com"
           SSH_PRIVATE_KEY: ${{ secrets.DOCS_ACCESS_TOKEN }}
           REMOTE_PORT: ${{ secrets.DOCS_REMOTE_PORT }}
           REMOTE_USER: ${{ secrets.DOCS_USER }}
