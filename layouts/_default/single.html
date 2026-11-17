@@ -2,13 +2,7 @@
     override `main` define of /themes/amethyst/_layouts/_default/baseof.html
 */}}
 {{ define "main" }}
-  <article class="12302-single markdown"> 
-    <span class="artical-title">{{ partial "docs/title.html" . }}</span>
-    <div style="text-align: center;">
-        {{ partial "docs/tags" .}}
-        {{ partial "docs/date" .}}
-    </div>
-    {{- .Content | safeHTML -}}
-    {{ partial "docs/footer" .}}
-  </article>
+    <article class="12302-single markdown"> 
+      {{ template "artical" . }}
+    </article>
 {{ end }}

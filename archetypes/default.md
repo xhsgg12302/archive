@@ -1,5 +1,6 @@
 ---
 title : '{{ replace .File.ContentBaseName "-" " " | title }}'
+# innerTitle: ""
 date : {{ .Date }}
 draft : true
 cascade : 
